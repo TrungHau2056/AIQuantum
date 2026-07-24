@@ -24,7 +24,7 @@
   - Điền `claude-progress.md` (file này).
 - Xác minh đã chạy: không (chưa có code/test).
 - Bằng chứng đã ghi lại: không (repo chưa có source code).
-- Commit: chưa commit.
+- Commit: 16efb6d (cùng commit chung với Phiên 002).
 - Tệp hoặc artifact đã cập nhật: `CLAUDE.md`, `docs/project-context.md`, `docs/data-flow.md`, `feature_list.json`, `init.sh`, `claude-progress.md`, memory files.
 - Rủi ro đã biết hoặc vấn đề chưa được giải quyết:
   - Stack frontend chưa chốt (React vs Streamlit) → chặn F00, F12.
@@ -47,7 +47,7 @@
 - Xác minh đã chạy:
   - `npm run build` PASS — 5 route prerender static: /, /enterprise, /investor, /bank, /regulator.
 - Bằng chứng đã ghi lại: build output trong progress; feature_list.json F00 + F12 evidence.
-- Commit: chưa commit.
+- Commit: 16efb6d — "Add CarbonPilot demo UI + project context" (51 files, 13.728 insertions). User tự push lên GitHub.
 - Tệp hoặc artifact đã cập nhật: `web/**`, `feature_list.json`, `init.sh`, `claude-progress.md` (file này).
 - Rủi ro đã biết hoặc vấn đề chưa được giải quyết:
   - Demo dùng mock data — chưa có backend/optimization thật (Stage 2).
