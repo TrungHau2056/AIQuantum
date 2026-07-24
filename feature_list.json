@@ -1,0 +1,216 @@
+{
+  "project": "CarbonPilot",
+  "competition": "AI-Quantum Challenge 2026 — Vòng 1",
+  "last_updated": "2026-07-24",
+  "rules": {
+    "single_active_feature": true,
+    "passing_requires_evidence": true,
+    "do_not_skip_verification": true
+  },
+  "status_legend": {
+    "not_started": "Work has not begun.",
+    "in_progress": "The feature is the current active task.",
+    "blocked": "Work cannot continue until a documented blocker is resolved.",
+    "passing": "Required verification has passed and evidence is recorded."
+  },
+  "active_feature": "F12",
+  "features": [
+    {
+      "id": "F00",
+      "area": "scaffolding",
+      "title": "Project scaffolding — cấu trúc repo, deps, Docker Compose, init.sh thật, smoke baseline",
+      "status": "in_progress",
+      "verification": [
+        "Cấu trúc thư mục tạo xong (backend/frontend hoặc gói Python).",
+        "Docker Compose chạy được PostgreSQL + MinIO.",
+        "./init.sh chạy được mà không lỗi.",
+        "Smoke baseline (F13) chạy được."
+      ],
+      "evidence": [
+        "Next.js app tạo tại web/ (Next.js 16 + TS + Tailwind v4 + shadcn/ui + Recharts + framer-motion).",
+        "npm run build pass — 5 route prerender static: /, /enterprise, /investor, /bank, /regulator.",
+        "init.sh cập nhật lệnh npm (INSTALL_CMD, VERIFY_CMD, START_CMD)."
+      ],
+      "notes": "Stack chốt: Next.js + Vercel. Phần Docker/PostgreSQL/MinIO + backend FastAPI = Stage 2 (chưa làm). Demo hiện dùng mock data."
+    },
+    {
+      "id": "F01",
+      "area": "data",
+      "title": "Carbon Data Ledger — schema + mô hình PostgreSQL",
+      "status": "not_started",
+      "verification": [
+        "Migrations chạy được trên DB trống.",
+        "Insert được bản ghi doanh nghiệp/cơ sở/phát thải/hạn ngạch/tín chỉ/ESG.",
+        "Mỗi bản ghi có nguồn, thời gian, đơn vị, trạng thái xác minh, điểm chất lượng."
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "F02",
+      "area": "data",
+      "title": "Data ingestion & validation — ánh xạ Excel/CSV → schema thống nhất",
+      "status": "not_started",
+      "verification": [
+        "Upload 1 file Excel/CSV mẫu ngành xi măng → lưu được vào Carbon Data Ledger.",
+        "Phát hiện được dữ liệu thiếu/trùng/sai định dạng/sai đơn vị.",
+        "Lưu đồng thời giá trị gốc + chuẩn hóa + nguồn/chứng từ.",
+        "Trường tự động ánh xạ hiển thị để xác nhận trước khi vào phân tích."
+      ],
+      "evidence": [],
+      "notes": "Polars/Pandas + Pydantic."
+    },
+    {
+      "id": "F03",
+      "area": "forecasting",
+      "title": "Forecasting Engine — dự báo phát thải cuối kỳ + dư/thiếu hạn ngạch",
+      "status": "not_started",
+      "verification": [
+        "Với dữ liệu lũy kế + sản lượng kế hoạch + hệ số → ra được dự báo phát thải cuối kỳ.",
+        "Tính được lượng hạn ngạch dư/thiếu.",
+        "Kết quả có thể tái lập."
+      ],
+      "evidence": [],
+      "notes": "Giai đoạn đầu: công thức. Sau: XGBoost/LightGBM/Quantile Regression (low/base/high)."
+    },
+    {
+      "id": "F04",
+      "area": "policy",
+      "title": "Policy Rule Engine — kiểm tra tuân thủ",
+      "status": "not_started",
+      "verification": [
+        "Tính được lượng tín chỉ tối đa được dùng (30% nghĩa vụ).",
+        "Cảnh báo thiếu hạn ngạch + hậu quả (khấu trừ kỳ sau).",
+        "Kiểm tra loại tín chỉ đủ điều kiện.",
+        "Mỗi rule lưu văn bản nguồn, điều/khoản, hiệu lực."
+      ],
+      "evidence": [],
+      "notes": "Output = cảnh báo/kiểm tra, KHÔNG phải kết luận pháp lý. Refs: QĐ 263, QĐ 13/2024, 30% rule, QĐ 21/2025 (Taxonomy Xanh)."
+    },
+    {
+      "id": "F05",
+      "area": "abatement",
+      "title": "Technology Abatement Catalogue + Retrieval (RAG)",
+      "status": "not_started",
+      "verification": [
+        "Catalogue lưu được công nghệ theo ngành với CAPEX/OPEX/% giảm/thời gian/tuổi thọ/rủi ro/nguồn.",
+        "Retrieval lọc công nghệ phù hợp ngành/quy mô/ngân sách."
+      ],
+      "evidence": [],
+      "notes": "Nguồn: Bộ Công Thương, Bộ Xây dựng, IEA, IFC, World Bank, GIZ."
+    },
+    {
+      "id": "F06",
+      "area": "calculation",
+      "title": "Calculation Engine — CAPEX, OPEX, NPV, IRR, ROI, hoàn vốn, chi phí vòng đời",
+      "status": "not_started",
+      "verification": [
+        "Tính đúng NPV/IRR/ROI/hoàn vốn cho 1 dự án đầu tư mẫu.",
+        "Tính chi phí giảm phát thải bình quân + biên.",
+        "Tính tổng chi phí tuân thủ cho phương án mua tín chỉ/hạn ngạch."
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "F07",
+      "area": "optimization",
+      "title": "Optimization Engine — MILP (Pyomo + HiGHS) chọn tổ hợp tối ưu",
+      "status": "not_started",
+      "verification": [
+        "Mô hình MILP giải được bài toán mẫu (5–10 phương án, 1 cơ sở xi măng, 1 kỳ).",
+        "Kết quả đáp ứng ràng buộc pháp luật/ngân sách/tiến độ/sản lượng.",
+        "Kết quả tối thiểu hóa tổng chi phí.",
+        "So sánh được với giải tay."
+      ],
+      "evidence": [],
+      "notes": "MILP = kết quả chuẩn prototype."
+    },
+    {
+      "id": "F08",
+      "area": "optimization",
+      "title": "QUBO + Simulated Annealing (quantum-inspired) — so sánh với MILP",
+      "status": "not_started",
+      "verification": [
+        "Biểu diễn bài toán lựa chọn công nghệ dạng QUBO.",
+        "Giải bằng Simulated Annealing.",
+        "So sánh với MILP về chi phí/thời gian/ràng buộc."
+      ],
+      "evidence": [],
+      "notes": "QAOA trên simulator = stretch (chỉ nếu còn thời gian)."
+    },
+    {
+      "id": "F09",
+      "area": "scenario",
+      "title": "Scenario Engine — what-if theo giá carbon, sản lượng, hiệu quả công nghệ",
+      "status": "not_started",
+      "verification": [
+        "Chạy được kịch bản biến động giá carbon.",
+        "Xác định được ngưỡng giá quyết định (mua tín chỉ vs hạn ngạch vs đầu tư công nghệ).",
+        "Kiểm tra ổn định của khuyến nghị."
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "F10",
+      "area": "llm",
+      "title": "Local LLM integration — tổng hợp/diễn giải/báo cáo/chatbot",
+      "status": "not_started",
+      "verification": [
+        "LLM local (4B–9B quantized) chạy được on-prem.",
+        "Sinh được báo cáo giải thích phương án từ kết quả engine.",
+        "KHÔNG tự sinh số liệu tài chính/hiệu quả giảm phát thải/quy định pháp luật."
+      ],
+      "evidence": [],
+      "notes": "Dữ liệu nhạy cảm không gửi API AI công cộng."
+    },
+    {
+      "id": "F11",
+      "area": "api",
+      "title": "API layer — FastAPI endpoints (ingest, forecast, optimize, report, RBAC)",
+      "status": "not_started",
+      "verification": [
+        "Endpoint ingest nhận file Excel/CSV.",
+        "Endpoint forecast trả dự báo dư/thiếu hạn ngạch.",
+        "Endpoint optimize trả khuyến nghị tổ hợp.",
+        "RBAC giới hạn truy cập theo vai trò."
+      ],
+      "evidence": [],
+      "notes": ""
+    },
+    {
+      "id": "F12",
+      "area": "frontend",
+      "title": "Frontend dashboards + RBAC (doanh nghiệp / nhà đầu tư / ngân hàng / cơ quan quản lý)",
+      "status": "in_progress",
+      "verification": [
+        "Dashboard doanh nghiệp: dự báo, cảnh báo, so sánh phương án, what-if, chatbot.",
+        "Dashboard ngân hàng: thẩm định tín dụng xanh.",
+        "Dashboard nhà đầu tư: đánh giá đầu tư xanh (ESG Score).",
+        "Dashboard cơ quan quản lý: tổng quan + cảnh báo tuân thủ.",
+        "Phân tầng dữ liệu: nội bộ / dẫn xuất / chia sẻ. Audit log."
+      ],
+      "evidence": [
+        "4 dashboard + landing page build pass, prerender static.",
+        "Role switcher (dropdown) chuyển 4 vai trò — chưa có auth thật (Stage 2).",
+        "Mock data từ số liệu đề án (110 cơ sở, 511M tCO₂e, 30% bù trừ, ESG ≥82, shortfall <10%).",
+        "Charts: Recharts (area/bar/line/pie/radial). Animations: framer-motion + NumberTicker."
+      ],
+      "notes": "Demo Stage 1: mock data, chưa nối backend thật. RBAC thật + audit log = Stage 2."
+    },
+    {
+      "id": "F13",
+      "area": "e2e",
+      "title": "Smoke / end-to-end baseline — upload → dự báo → 1 kết quả tối ưu",
+      "status": "not_started",
+      "verification": [
+        "Chạy end-to-end trên 1 cơ sở xi măng, 1 kỳ tuân thủ.",
+        "Upload dữ liệu → dự báo dư/thiếu hạn ngạch → 1 kết quả tối ưu MILP.",
+        "Mảnh dọc mỏng chứng minh luồng chính."
+      ],
+      "evidence": [],
+      "notes": "Làm sau khi F01–F07 có nền tảng."
+    }
+  ]
+}
