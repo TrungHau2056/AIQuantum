@@ -5,8 +5,7 @@ import {
   AreaChart, Area, BarChart, Bar, LineChart, Line, Line as RLine, ComposedChart,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Legend, Cell,
 } from "recharts";
-import { NumberTicker } from "@/components/magic/number-ticker";
-import { KpiCard, SectionHeader } from "@/components/dashboards/kpi-card";
+import { KpiCard } from "@/components/dashboards/kpi-card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -53,14 +52,16 @@ export default function EnterprisePage() {
 
       {/* Early warning banner */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="flex items-start gap-3 rounded-xl border border-destructive/30 bg-destructive/5 p-4"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-start gap-4 rounded-xl border border-destructive/30 bg-destructive/5 p-5"
       >
-        <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-destructive" />
-        <div className="space-y-1 text-sm">
-          <div className="font-medium text-destructive">Cảnh báo: dự kiến thiếu hạn ngạch cuối kỳ</div>
-          <div className="text-muted-foreground">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-destructive/10">
+          <AlertTriangle className="h-5 w-5 text-destructive" />
+        </div>
+        <div className="space-y-1.5">
+          <div className="font-semibold text-destructive">Cảnh báo: dự kiến thiếu hạn ngạch cuối kỳ</div>
+          <div className="text-sm leading-relaxed text-muted-foreground">
             Phát thải dự báo {fmtM(forecast.forecastEndOfPeriod)} tCO₂e vượt hạn ngạch được cấp {fmtM(forecast.allowance)} tCO₂e.
             Thiếu hụt {fmtM(deficit)} tCO₂e. Nếu không xử lý, phần thiếu sẽ bị khấu trừ vào hạn ngạch kỳ tiếp theo.
           </div>
@@ -69,58 +70,34 @@ export default function EnterprisePage() {
 
       {/* KPI row */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Gauge className="h-4 w-4" /> Phát thải dự báo cuối kỳ
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-destructive">
-              <NumberTicker value={forecast.forecastEndOfPeriod / 1_000_000} decimals={2} suffix="M" />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">tCO₂e</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Leaf className="h-4 w-4" /> Hạn ngạch được cấp
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              <NumberTicker value={forecast.allowance / 1_000_000} decimals={2} suffix="M" />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">tCO₂e</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <TrendingDown className="h-4 w-4" /> Thiếu hụt hạn ngạch
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-destructive">
-              -<NumberTicker value={deficit / 1_000_000} decimals={2} suffix="M" />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">tCO₂e</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Wallet className="h-4 w-4" /> Ngân sách tuân thủ
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">
-              <NumberTicker value={forecast.complianceBudget / 1_000_000} decimals={2} prefix="$" suffix="M" />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">USD</div>
-          </CardContent>
-        </Card>
+        <KpiCard
+          title="Phát thải dự báo cuối kỳ"
+          value={`${(forecast.forecastEndOfPeriod / 1_000_000).toFixed(2)}M`}
+          hint="tCO₂e"
+          icon={Gauge}
+          tone="danger"
+        />
+        <KpiCard
+          title="Hạn ngạch được cấp"
+          value={`${(forecast.allowance / 1_000_000).toFixed(2)}M`}
+          hint="tCO₂e"
+          icon={Leaf}
+          tone="success"
+        />
+        <KpiCard
+          title="Thiếu hụt hạn ngạch"
+          value={`-${(deficit / 1_000_000).toFixed(2)}M`}
+          hint="tCO₂e"
+          icon={TrendingDown}
+          tone="danger"
+        />
+        <KpiCard
+          title="Ngân sách tuân thủ"
+          value={`$${(forecast.complianceBudget / 1_000_000).toFixed(2)}M`}
+          hint="USD"
+          icon={Wallet}
+          tone="default"
+        />
       </div>
 
       {/* Compliance levers + forecast */}

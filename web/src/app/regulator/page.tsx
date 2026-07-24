@@ -5,7 +5,6 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from "recharts";
 import { motion } from "framer-motion";
-import { NumberTicker } from "@/components/magic/number-ticker";
 import { KpiCard } from "@/components/dashboards/kpi-card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +19,7 @@ export default function RegulatorPage() {
   const { sectors, complianceStats, greenTransition } = regulatorOverview;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Tổng quan thị trường carbon</h1>
@@ -36,58 +35,34 @@ export default function RegulatorPage() {
 
       {/* National KPIs */}
       <div className="grid gap-4 md:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Building2 className="h-4 w-4" /> Cơ sở trong diện ETS
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">
-              <NumberTicker value={regulatorOverview.totalFacilities} />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">Nhiệt điện 34 · Sắt thép 25 · Xi măng 51</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Factory className="h-4 w-4" /> Tổng hạn ngạch
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-primary">
-              <NumberTicker value={regulatorOverview.totalAllowance} decimals={2} suffix="M" />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">tCO₂e (2025: {regulatorOverview.allowance2025}M, 2026: {regulatorOverview.allowance2026}M)</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <TrendingUp className="h-4 w-4" /> Nhu cầu mua
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-destructive">
-              <NumberTicker value={regulatorOverview.buyDemand} decimals={1} suffix="M" />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">tCO₂e — thiếu hụt hạn ngạch</div>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Leaf className="h-4 w-4" /> Nhu cầu bán
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold">
-              <NumberTicker value={regulatorOverview.sellDemand} decimals={1} suffix="M" />
-            </div>
-            <div className="mt-1 text-xs text-muted-foreground">tCO₂e — dư hạn ngạch</div>
-          </CardContent>
-        </Card>
+        <KpiCard
+          title="Cơ sở trong diện ETS"
+          value={`${regulatorOverview.totalFacilities}`}
+          hint="Nhiệt điện 34 · Sắt thép 25 · Xi măng 51"
+          icon={Building2}
+          tone="default"
+        />
+        <KpiCard
+          title="Tổng hạn ngạch"
+          value={`${regulatorOverview.totalAllowance.toFixed(2)}M`}
+          hint={`tCO₂e (2025: ${regulatorOverview.allowance2025}M, 2026: ${regulatorOverview.allowance2026}M)`}
+          icon={Factory}
+          tone="success"
+        />
+        <KpiCard
+          title="Nhu cầu mua"
+          value={`${regulatorOverview.buyDemand.toFixed(1)}M`}
+          hint="tCO₂e — thiếu hụt hạn ngạch"
+          icon={TrendingUp}
+          tone="danger"
+        />
+        <KpiCard
+          title="Nhu cầu bán"
+          value={`${regulatorOverview.sellDemand.toFixed(1)}M`}
+          hint="tCO₂e — dư hạn ngạch"
+          icon={Leaf}
+          tone="default"
+        />
       </div>
 
       {/* Sector breakdown + compliance stats */}

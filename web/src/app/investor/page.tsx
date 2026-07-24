@@ -5,7 +5,7 @@ import {
   LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from "recharts";
 import { NumberTicker } from "@/components/magic/number-ticker";
-import { KpiCard, SectionHeader } from "@/components/dashboards/kpi-card";
+import { KpiCard } from "@/components/dashboards/kpi-card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
@@ -18,7 +18,7 @@ export default function InvestorPage() {
   const overallPass = esgProfile.overallScore >= esgProfile.overallThreshold;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Dashboard đánh giá đầu tư xanh</h1>
         <p className="mt-1 text-sm text-muted-foreground">

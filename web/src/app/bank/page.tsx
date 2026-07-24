@@ -23,7 +23,7 @@ const riskTone = {
 
 export default function BankPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Dashboard thẩm định tín dụng xanh</h1>
         <p className="mt-1 text-sm text-muted-foreground">
