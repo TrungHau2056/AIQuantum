@@ -53,9 +53,9 @@ const heroStats = [
 
 export default function Home() {
   return (
-    <div className="space-y-12">
+    <div className="space-y-10 md:space-y-12">
       {/* Hero */}
-      <section className="relative overflow-hidden rounded-3xl border bg-linear-to-br from-primary/10 via-background to-background p-8 md:p-14">
+      <section className="relative overflow-hidden rounded-2xl border bg-linear-to-br from-primary/10 via-background to-background p-6 sm:p-8 md:rounded-3xl md:p-14">
         <div
           className="pointer-events-none absolute inset-0 opacity-40"
           style={{
@@ -69,18 +69,18 @@ export default function Home() {
             AI-Quantum Challenge 2026 — Carbon Compliance Decision Support
           </div>
           <div className="space-y-3">
-            <h1 className="max-w-3xl text-5xl font-extrabold tracking-tight md:text-6xl">
+            <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
               Carbon<span className="text-primary">Pilot</span>
             </h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               Nền tảng chuẩn hóa dữ liệu carbon và lựa chọn phương án tuân thủ tối ưu cho thị trường
               carbon Việt Nam — kết nối doanh nghiệp, ngân hàng, nhà đầu tư và cơ quan quản lý.
             </p>
           </div>
-          <div className="flex flex-wrap gap-10 pt-4">
+          <div className="grid gap-6 pt-4 sm:grid-cols-3 sm:gap-8">
             {heroStats.map((stat) => (
               <div key={stat.label}>
-                <div className="text-4xl font-bold text-primary">
+                <div className="text-3xl font-bold text-primary md:text-4xl">
                   <NumberTicker
                     value={stat.value}
                     decimals={stat.decimals}

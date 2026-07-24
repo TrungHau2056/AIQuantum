@@ -4,11 +4,9 @@ import {
   BarChart, Bar, PieChart, Pie, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
 } from "recharts";
-import { motion } from "framer-motion";
 import { KpiCard } from "@/components/dashboards/kpi-card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { regulatorOverview } from "@/lib/mock-data";
 import { Building2, Factory, TrendingUp, Leaf, AlertTriangle, CalendarClock } from "lucide-react";

@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import {
-  AreaChart, Area, BarChart, Bar, LineChart, Line, Line as RLine, ComposedChart,
-  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Legend, Cell,
+  AreaChart, Area, BarChart, Bar, Line as RLine, ComposedChart,
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Legend,
 } from "recharts";
 import { KpiCard } from "@/components/dashboards/kpi-card";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,7 +32,6 @@ const leverData = [
 
 export default function EnterprisePage() {
   const deficit = Math.abs(forecast.surplusDeficit);
-  const maxCreditOffset = forecast.allowance * 0.3;
   const optimal = abatementOptions.find((o) => o.isOptimal);
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import type { Role } from "./types";
 
 interface RoleContextValue {
@@ -11,8 +12,22 @@ interface RoleContextValue {
 const RoleContext = createContext<RoleContextValue | undefined>(undefined);
 
 export function RoleProvider({ children }: { children: ReactNode }) {
-  const [role, setRole] = useState<Role>("enterprise");
-  return <RoleContext.Provider value={{ role, setRole }}>{children}</RoleContext.Provider>;
+  const [selectedRole, setSelectedRole] = useState<Role>("enterprise");
+  const pathname = usePathname();
+  const routeRole = pathname.split("/")[1];
+  const role: Role =
+    routeRole === "enterprise" ||
+    routeRole === "investor" ||
+    routeRole === "bank" ||
+    routeRole === "regulator"
+      ? routeRole
+      : selectedRole;
+
+  return (
+    <RoleContext.Provider value={{ role, setRole: setSelectedRole }}>
+      {children}
+    </RoleContext.Provider>
+  );
 }
 
 export function useRole() {

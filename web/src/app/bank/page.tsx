@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from "recharts";
 import { NumberTicker } from "@/components/magic/number-ticker";
 import { KpiCard } from "@/components/dashboards/kpi-card";
@@ -14,12 +14,6 @@ import {
 } from "@/components/ui/table";
 import { bankAppraisal, facility } from "@/lib/mock-data";
 import { ShieldCheck, AlertCircle, TrendingDown, FileCheck, Landmark } from "lucide-react";
-
-const riskTone = {
-  Low: "default",
-  Medium: "warning",
-  High: "danger",
-} as const;
 
 export default function BankPage() {
   return (

@@ -195,9 +195,11 @@
         "4 dashboard + landing page build pass, prerender static.",
         "Role switcher (dropdown) chuyển 4 vai trò — chưa có auth thật (Stage 2).",
         "Mock data từ số liệu đề án (110 cơ sở, 511M tCO₂e, 30% bù trừ, ESG ≥82, shortfall <10%).",
-        "Charts: Recharts (area/bar/line/pie/radial). Animations: framer-motion + NumberTicker."
+        "Charts: Recharts (area/bar/line/pie/radial). Animations: framer-motion + NumberTicker.",
+        "2026-07-24 UI pass: role context đồng bộ theo pathname; mobile header có brand/home; spacing, hero typography và role switcher responsive.",
+        "Xác minh sau UI pass: npm run lint PASS (0 lỗi/cảnh báo); npm run build PASS, 5 route static."
       ],
-      "notes": "Demo Stage 1: mock data, chưa nối backend thật. RBAC thật + audit log = Stage 2."
+      "notes": "Demo Stage 1: mock data, chưa nối backend thật. RBAC thật + audit log = Stage 2. Playwright visual verification chưa chạy vì phiên Codex không có in-app Browser tab được gắn."
     },
     {
       "id": "F13",

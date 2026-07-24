@@ -55,3 +55,20 @@
   - Chưa deploy Vercel (user review local trước).
   - Open question data-flow.md: trường "quyết định lựa chọn phương án thực tế" required hay optional.
 - Bước tốt nhất tiếp theo: User chạy `cd web && npm run dev` review local → deploy Vercel → sau đó bắt đầu Stage 2 (FastAPI + Pyomo/HiGHS + PostgreSQL trên Railway).
+
+### Phiên 003
+
+- Ngày: 2026-07-24
+- Mục tiêu: Đọc live UI, kết nối Playwright và cải thiện trải nghiệm responsive cho F12.
+- Đã hoàn thành:
+  - Sửa role context lấy vai trò từ pathname; mở trực tiếp `/investor`, `/bank`, `/regulator` không còn hiển thị sai vai trò Doanh nghiệp.
+  - Thêm mobile header với logo/link về trang chủ; giữ sidebar desktop hiện tại.
+  - Tối ưu mobile spacing, kích thước hero, lưới KPI landing page và chiều rộng role switcher.
+  - Dọn toàn bộ 10 cảnh báo ESLint do import/biến không dùng trong dashboard.
+- Xác minh đã chạy:
+  - `npm run lint` PASS — 0 lỗi, 0 cảnh báo.
+  - `npm run build` PASS — 5 route static: `/`, `/enterprise`, `/investor`, `/bank`, `/regulator`.
+  - `git diff --check` PASS.
+- Chặn xác minh trực quan:
+  - App đã chạy local tại `http://localhost:3001`, nhưng phiên Codex không phát hiện in-app Browser tab nên Playwright chưa thể chụp/nhấp kiểm tra.
+- Bước tốt nhất tiếp theo: Gắn/mở Browser cạnh Codex, chạy Playwright ở desktop + mobile cho 5 route, sửa các vấn đề trực quan còn lại rồi commit.

@@ -40,10 +40,12 @@ export function RoleSwitcher() {
 
   return (
     <Select value={role} onValueChange={handleChange}>
-      <SelectTrigger className="w-50">
-        <div className="flex items-center gap-2">
-          <Icon className="h-4 w-4" />
-          <SelectValue />
+      <SelectTrigger className="w-40 sm:w-50" aria-label="Chuyển vai trò dashboard">
+        <div className="flex min-w-0 items-center gap-2">
+          <Icon className="h-4 w-4 shrink-0" />
+          <span className="truncate">
+            <SelectValue />
+          </span>
         </div>
       </SelectTrigger>
       <SelectContent>
