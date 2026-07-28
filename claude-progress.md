@@ -126,3 +126,23 @@
   - Chưa có multi-facility UI (doanh nghiệp đa cơ sở lặp Nhóm 1 — prototype 1 cơ sở).
   - Playwright visual verification chưa chạy.
 - Bước tốt nhất tiếp theo: Playwright visual verify /ingest (desktop + mobile), hoặc bắt đầu Stage 2 (FastAPI + Docker Compose PostgreSQL + MinIO + parser Excel thật).
+
+### Phiên 006
+
+- Ngày: 2026-07-28
+- Mục tiêu: Multi-facility + hạn ngạch theo giai đoạn cho wizard /ingest.
+- Đã hoàn thành:
+  - Refactor `web/src/lib/form-schema.ts`: `IngestFormData` giờ có `facilities: FacilityEntry[]` (mỗi entry chứa facility + activityData + emissions + allowance + credits + greenProjects + market + fuelSwitch + actualDecision) + `esg` company-level. Thêm `AllowancePeriod` (`period` + `allocatedTco2e`) — hạn ngạch theo giai đoạn, thêm/bớt tùy ý (2025, 2026, 2027...). `createEmptyFacility()` helper. `calcCompleteness` tính trên company + tất cả cơ sở. `calcComplianceGap` trả về `perFacility[]` + `total` (aggregate).
+  - Cập nhật `docs/form-spec.md`: 4 nhóm + multi-facility + hạn ngạch theo giai đoạn. Company info nhập 1 lần, mỗi cơ sở có Nhóm 2+3 riêng.
+  - Rewrite `web/src/components/onboarding/ingest-wizard.tsx`: facility selector (dropdown + add/remove) ở Nhóm 2-3. Nhóm 1: company info (1 lần) + danh sách cơ sở (add/remove, mỗi cơ sở nhập tên + meta). Nhóm 2: hạn ngạch periods (add/remove giai đoạn) + phát thải + sản lượng + tín chỉ per cơ sở. Nhóm 3: phương án + chuyển đổi nhiên liệu + thị trường + ngân sách + actualDecision per cơ sở. Nhóm 4: ESG company-level. Compliance Gap live preview: total + breakdown per cơ sở. Summary modal: số cơ sở + gap tổng.
+- Trả lời câu hỏi user: hạn ngạch theo giai đoạn KHÔNG bắt doanh nghiệp nhập lại thông tin DN — company info nhập 1 lần, periods là array trong mỗi cơ sở.
+- Xác minh đã chạy:
+  - `npm run lint` PASS — 0 lỗi, 0 cảnh báo.
+  - `npm run build` PASS — 6 route static (gồm /ingest).
+- Tệp hoặc artifact đã cập nhật: `web/src/lib/form-schema.ts`, `docs/form-spec.md`, `web/src/components/onboarding/ingest-wizard.tsx`, `claude-progress.md` (file này).
+- Rủi ro đã biết hoặc vấn đề chưa được giải quyết:
+  - Wizard dùng mock state (Stage 1) — chưa POST API.
+  - Upload Excel/CSV vẫn là stub.
+  - Multi-facility: chưa có validation cross-facility (VD: tổng tín chỉ bù trừ ≤ 30% tổng nghĩa vụ).
+  - Playwright visual verification chưa chạy.
+- Bước tốt nhất tiếp theo: Playwright visual verify /ingest (test add/remove facility, periods, multi-facility gap), hoặc bắt đầu Stage 2.
