@@ -68,7 +68,7 @@ export interface ESGProfile {
 }
 
 export interface BankAppraisal {
-  riskLevel: "Low" | "Medium" | "High";
+  riskLevel: "Thấp" | "Trung bình" | "Cao";
   shortfallPct: number; // % short of allowance
   complianceLevel: number; // % at end of period
   reductionTrend: { period: string; emissions: number }[];

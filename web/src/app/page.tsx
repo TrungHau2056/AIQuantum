@@ -31,7 +31,7 @@ const roles = [
     label: "Ngân hàng",
     desc: "Thẩm định tín dụng xanh: mức tuân thủ, rủi ro, xu hướng giảm phát thải.",
     icon: Landmark,
-    stats: "Shortfall < 10% → Low risk",
+    stats: "Shortfall < 10% → Rủi ro thấp",
     accent: "from-amber-500/20 to-orange-500/5",
   },
   {

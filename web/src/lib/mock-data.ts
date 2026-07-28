@@ -204,8 +204,8 @@ export const esgProfile: ESGProfile = {
 };
 
 export const bankAppraisal: BankAppraisal = {
-  riskLevel: "Low",
-  shortfallPct: 8.3, // 200k / 2.4M = 8.3% < 10% → Low
+  riskLevel: "Thấp",
+  shortfallPct: 8.3, // 200k / 2.4M = 8.3% < 10% → Thấp
   complianceLevel: 91.7, // % compliance at end of period
   reductionTrend: [
     { period: "Q1/2025", emissions: 660_000 },

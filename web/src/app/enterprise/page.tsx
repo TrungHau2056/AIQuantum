@@ -20,10 +20,10 @@ import {
   Factory, TrendingDown, AlertTriangle, Wallet, Leaf, Gauge, Send, Bot,
 } from "lucide-react";
 
-const fmt = (n: number) => n.toLocaleString("en-US");
+const fmt = (n: number) => n.toLocaleString("vi-VN");
 const fmtM = (n: number) => `${(n / 1_000_000).toFixed(2)}M`;
 // Format VND: chia cho 1 tỷ → "X,X tỷ VND"
-const fmtVndB = (n: number) => `${(n / 1_000_000_000).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} tỷ VND`;
+const fmtVndB = (n: number) => `${(n / 1_000_000_000).toLocaleString("vi-VN", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} tỷ VND`;
 
 const leverData = [
   { name: "Hạn ngạch", value: forecast.allowance, fill: "var(--chart-1)" },

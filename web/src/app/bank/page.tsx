@@ -34,11 +34,11 @@ export default function BankPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Badge variant={bankAppraisal.riskLevel === "Low" ? "default" : bankAppraisal.riskLevel === "Medium" ? "secondary" : "destructive"} className="text-base">
-              {bankAppraisal.riskLevel} risk
+            <Badge variant={bankAppraisal.riskLevel === "Thấp" ? "default" : bankAppraisal.riskLevel === "Trung bình" ? "secondary" : "destructive"} className="text-base">
+              Rủi ro {bankAppraisal.riskLevel.toLowerCase()}
             </Badge>
             <div className="mt-2 text-xs text-muted-foreground">
-              Shortfall {bankAppraisal.shortfallPct}% &lt; 10% ngưỡng Low
+              Shortfall {bankAppraisal.shortfallPct}% &lt; 10% ngưỡng rủi ro thấp
             </div>
           </CardContent>
         </Card>
@@ -53,7 +53,7 @@ export default function BankPage() {
           value={`${bankAppraisal.shortfallPct}%`}
           icon={AlertCircle}
           tone={bankAppraisal.shortfallPct < 10 ? "success" : "danger"}
-          hint={bankAppraisal.shortfallPct < 10 ? "Dưới ngưỡng 10% — Low risk" : "Vượt ngưỡng 10%"}
+          hint={bankAppraisal.shortfallPct < 10 ? "Dưới ngưỡng 10% — rủi ro thấp" : "Vượt ngưỡng 10%"}
         />
         <KpiCard
           title="Cường độ giảm phát thải"
@@ -82,7 +82,7 @@ export default function BankPage() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="period" tick={{ fontSize: 12 }} />
               <YAxis tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`} />
-              <Tooltip formatter={(v) => Number(v).toLocaleString("en-US") + " tCO₂e"} />
+              <Tooltip formatter={(v) => Number(v).toLocaleString("vi-VN") + " tCO₂e"} />
               <Line type="monotone" dataKey="emissions" name="Phát thải" stroke="var(--chart-1)" strokeWidth={2} />
             </LineChart>
           </ResponsiveContainer>
@@ -144,7 +144,7 @@ export default function BankPage() {
               <div className="text-xs text-muted-foreground">Khả năng tiếp cận vốn xanh</div>
               <div className="mt-1 text-lg font-bold text-primary">Khả thi</div>
               <div className="mt-2 text-xs text-muted-foreground">
-                Dữ liệu ESG + lộ trình Net Zero minh bạch, tuân thủ carbon ở mức Low risk.
+                Dữ liệu ESG + lộ trình Net Zero minh bạch, tuân thủ carbon ở mức rủi ro thấp.
               </div>
             </div>
             <div className="rounded-lg border p-4">

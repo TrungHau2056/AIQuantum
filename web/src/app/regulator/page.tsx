@@ -190,7 +190,7 @@ export default function RegulatorPage() {
           </div>
           <Separator className="my-4" />
           <div className="text-xs text-muted-foreground">
-            Opt-in View: dữ liệu ESG & tiến độ giảm phát thải chỉ hiển thị khi doanh nghiệp đồng ý chia sẻ.
+            Chế độ chia sẻ tự nguyện: dữ liệu ESG & tiến độ giảm phát thải chỉ hiển thị khi doanh nghiệp đồng ý chia sẻ.
           </div>
         </CardContent>
       </Card>

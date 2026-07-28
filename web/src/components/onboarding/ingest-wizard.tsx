@@ -134,7 +134,7 @@ export function IngestWizard() {
         </div>
         <div className="min-w-56 rounded-lg border p-3">
           <div className="mb-1.5 flex items-center justify-between text-xs">
-            <span className="text-muted-foreground">Hoàn thành (required)</span>
+            <span className="text-muted-foreground">Hoàn thành (bắt buộc)</span>
             <span className="font-semibold">{completeness.pct}%</span>
           </div>
           <Progress value={completeness.pct} />
@@ -249,10 +249,10 @@ export function IngestWizard() {
                         <label className={labelClass}>Loại sở hữu</label>
                         <select className={selectClass} value={data.company.ownershipType} onChange={(e) => setCompany("ownershipType", e.target.value as OwnershipType | "")}>
                           <option value="">— Chọn —</option>
-                          <option value="SOE">State-owned (SOE)</option>
-                          <option value="private">Private</option>
-                          <option value="FDI">FDI</option>
-                          <option value="joint-stock">Joint-stock</option>
+                          <option value="SOE">Doanh nghiệp nhà nước (SOE)</option>
+                          <option value="private">Tư nhân</option>
+                          <option value="FDI">Đầu tư nước ngoài (FDI)</option>
+                          <option value="joint-stock">Cổ phần</option>
                         </select>
                       </div>
                     </div>
@@ -336,7 +336,7 @@ export function IngestWizard() {
                     <div className="grid gap-4 md:grid-cols-2">
                       <div>
                         <label className={labelClass}>Phát thải thực tế lũy kế (tCO₂e)</label>
-                        <input type="number" className={inputClass} value={activeFacility.emissions.emissionsTco2e} onChange={(e) => updateFacility("emissions", { ...activeFacility.emissions, emissionsTco2e: e.target.value === "" ? "" : Number(e.target.value) })} placeholder="Từ báo cáo kiểm kê KNK — để trống để auto-calc" />
+                        <input type="number" className={inputClass} value={activeFacility.emissions.emissionsTco2e} onChange={(e) => updateFacility("emissions", { ...activeFacility.emissions, emissionsTco2e: e.target.value === "" ? "" : Number(e.target.value) })} placeholder="Từ báo cáo kiểm kê KNK — để trống để tự tính" />
                       </div>
                       <div>
                         <label className={labelClass}>Sản lượng kế hoạch còn lại *</label>
@@ -361,13 +361,13 @@ export function IngestWizard() {
                     <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
                       <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/60">Sản lượng đã sản xuất (chuỗi theo tháng)</p>
                       <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-dashed px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted/40">
-                        <Upload className="h-3.5 w-3.5" /> Upload Excel/CSV
+                        <Upload className="h-3.5 w-3.5" /> Tải lên Excel/CSV
                         <input type="file" accept=".xlsx,.csv" className="hidden" onChange={() => {}} />
                       </label>
                     </div>
                     <Button size="sm" variant="outline" onClick={addActivity}><Plus className="mr-1 h-3.5 w-3.5" /> Thêm dòng</Button>
                     {activeFacility.activityData.length === 0 ? (
-                      <p className="mt-2 rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">Chưa có dữ liệu. Upload Excel hoặc thêm dòng thủ công.</p>
+                      <p className="mt-2 rounded-lg border border-dashed p-6 text-center text-sm text-muted-foreground">Chưa có dữ liệu. Tải lên Excel hoặc thêm dòng thủ công.</p>
                     ) : (
                       <div className="mt-2 space-y-2">
                         {activeFacility.activityData.map((row) => (
@@ -409,7 +409,7 @@ export function IngestWizard() {
                               <option value="CORSIA">CORSIA</option>
                               <option value="VCM">VCM</option>
                             </select>
-                            <input type="number" className={inputClass} value={row.creditVintage} onChange={(e) => updateCredit(row.id, { creditVintage: e.target.value === "" ? "" : Number(e.target.value) })} placeholder="Vintage" />
+                            <input type="number" className={inputClass} value={row.creditVintage} onChange={(e) => updateCredit(row.id, { creditVintage: e.target.value === "" ? "" : Number(e.target.value) })} placeholder="Năm phát hành" />
                             <input type="number" className={inputClass} value={row.creditVolume} onChange={(e) => updateCredit(row.id, { creditVolume: e.target.value === "" ? "" : Number(e.target.value) })} placeholder="Thể tích tCO₂e" />
                             <label className="flex items-center gap-2 text-xs">
                               <input type="checkbox" checked={row.creditEligible} onChange={(e) => updateCredit(row.id, { creditEligible: e.target.checked })} /> Bù trừ 30%?
@@ -463,7 +463,7 @@ export function IngestWizard() {
                                 <input type="number" className={inputClass} value={row.energySavings} onChange={(e) => updateProject(row.id, { energySavings: e.target.value === "" ? "" : Number(e.target.value) })} placeholder="VD: 12.000.000.000" />
                               </div>
                               <div>
-                                <label className={labelClass}>OPEX delta (VND/năm)</label>
+                                <label className={labelClass}>Chênh lệch OPEX (VND/năm)</label>
                                 <input type="number" className={inputClass} value={row.opexDelta} onChange={(e) => updateProject(row.id, { opexDelta: e.target.value === "" ? "" : Number(e.target.value) })} />
                               </div>
                               <div>
@@ -532,10 +532,10 @@ export function IngestWizard() {
                   <Separator />
                   <div>
                     <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/60">
-                      Quyết định lựa chọn phương án thực tế <span className="font-normal text-muted-foreground/40">(optional)</span>
+                      Quyết định lựa chọn phương án thực tế <span className="font-normal text-muted-foreground/40">(tùy chọn)</span>
                     </p>
                     <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 text-xs text-muted-foreground">
-                      Optional — doanh nghiệp nhập dữ liệu trước khi quyết định. Quay lại cập nhật sau khi quyết định để regulator so sánh thực tế vs khuyến nghị optimizer.
+                      Tùy chọn — doanh nghiệp nhập dữ liệu trước khi quyết định. Quay lại cập nhật sau khi quyết định để cơ quan quản lý so sánh thực tế với khuyến nghị của optimizer.
                     </div>
                     <div className="mt-2 grid gap-4 md:grid-cols-2">
                       <div>
@@ -562,7 +562,7 @@ export function IngestWizard() {
               {step === 3 && (
                 <div className="space-y-4">
                   <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 text-sm">
-                    <strong>Optional — company-level:</strong> Hồ sơ ESG & cam kết Net Zero — phục vụ Green Finance Profile. Nhập 1 lần cho toàn doanh nghiệp.
+                    <strong>Tùy chọn — cấp doanh nghiệp:</strong> Hồ sơ ESG & cam kết Net Zero — phục vụ Green Finance Profile. Nhập 1 lần cho toàn doanh nghiệp.
                   </div>
                   <div className="grid gap-4 md:grid-cols-2">
                     <label className="flex items-center gap-2 text-sm">
@@ -589,19 +589,19 @@ export function IngestWizard() {
           {step >= 1 && gap.total.gap !== null && (
             <div className="rounded-lg border border-primary/20 bg-primary/5 p-3 text-sm">
               <div className="flex items-center gap-2 font-medium text-primary">
-                <CheckCircle2 className="h-4 w-4" /> Auto-calc Compliance Gap — Tổng ({data.facilities.length} cơ sở)
+                <CheckCircle2 className="h-4 w-4" /> Tự tính Compliance Gap — Tổng ({data.facilities.length} cơ sở)
               </div>
               <div className="mt-1.5 grid grid-cols-3 gap-2 text-xs">
-                <div>Phát thải: <strong>{gap.total.forecastEmissions?.toLocaleString("en-US")} tCO₂e</strong></div>
-                <div>Hạn ngạch: <strong>{gap.total.totalAllowance?.toLocaleString("en-US")} tCO₂e</strong></div>
-                <div>Gap: <strong className={gap.total.gap < 0 ? "text-destructive" : "text-primary"}>{gap.total.gap.toLocaleString("en-US")} tCO₂e</strong> {gap.total.gap < 0 ? "(thiếu)" : "(dư)"}</div>
+                <div>Phát thải: <strong>{gap.total.forecastEmissions?.toLocaleString("vi-VN")} tCO₂e</strong></div>
+                <div>Hạn ngạch: <strong>{gap.total.totalAllowance?.toLocaleString("vi-VN")} tCO₂e</strong></div>
+                <div>Gap: <strong className={gap.total.gap < 0 ? "text-destructive" : "text-primary"}>{gap.total.gap.toLocaleString("vi-VN")} tCO₂e</strong> {gap.total.gap < 0 ? "(thiếu)" : "(dư)"}</div>
               </div>
               {data.facilities.length > 1 && (
                 <div className="mt-2 space-y-1 border-t pt-2">
                   {gap.perFacility.map((f) => (
                     <div key={f.facilityId} className="flex justify-between text-xs text-muted-foreground">
                       <span>{f.facilityName}</span>
-                      <span>{f.gap !== null ? `${f.gap.toLocaleString("en-US")} tCO₂e ${f.gap < 0 ? "thiếu" : "dư"}` : "—"}</span>
+                      <span>{f.gap !== null ? `${f.gap.toLocaleString("vi-VN")} tCO₂e ${f.gap < 0 ? "thiếu" : "dư"}` : "—"}</span>
                     </div>
                   ))}
                 </div>
@@ -612,7 +612,7 @@ export function IngestWizard() {
           {/* Validation warning */}
           {!isStepValid(step) && (
             <div className="flex items-center gap-2 rounded-lg border border-destructive/30 bg-destructive/5 p-3 text-sm text-destructive">
-              <AlertCircle className="h-4 w-4 shrink-0" /> Còn trường required chưa điền {(step === 1 || step === 2) && "cho cơ sở đang chọn"}.
+              <AlertCircle className="h-4 w-4 shrink-0" /> Còn trường bắt buộc chưa điền {(step === 1 || step === 2) && "cho cơ sở đang chọn"}.
             </div>
           )}
 
@@ -640,11 +640,11 @@ export function IngestWizard() {
           <Card className="max-w-lg" onClick={(e) => e.stopPropagation()}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2"><CheckCircle2 className="h-5 w-5 text-primary" /> Đã lưu dữ liệu (mock)</CardTitle>
-              <CardDescription>Stage 1: lưu trong state. Stage 2: POST tới API ingest → Carbon Data Ledger.</CardDescription>
+              <CardDescription>Stage 1: lưu trong state. Stage 2: gửi tới API ingest → Carbon Data Ledger.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground">Data completeness</span>
+                <span className="text-muted-foreground">Mức hoàn thành dữ liệu</span>
                 <Badge variant={completeness.tier === "Đầy đủ" ? "default" : "secondary"}>{completeness.tier} ({completeness.pct}%)</Badge>
               </div>
               <div className="flex items-center justify-between">
@@ -653,8 +653,8 @@ export function IngestWizard() {
               </div>
               {gap.total.gap !== null ? (
                 <div className="rounded-lg border p-3">
-                  <div className="text-xs text-muted-foreground">Compliance Gap tổng (auto-calc)</div>
-                  <div className="mt-1 text-lg font-bold text-destructive">{gap.total.gap.toLocaleString("en-US")} tCO₂e {gap.total.gap < 0 ? "thiếu" : "dư"}</div>
+                  <div className="text-xs text-muted-foreground">Compliance Gap tổng (tự tính)</div>
+                  <div className="mt-1 text-lg font-bold text-destructive">{gap.total.gap.toLocaleString("vi-VN")} tCO₂e {gap.total.gap < 0 ? "thiếu" : "dư"}</div>
                 </div>
               ) : (
                 <div className="rounded-lg border border-dashed p-3 text-xs text-muted-foreground">

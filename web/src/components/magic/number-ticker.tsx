@@ -37,7 +37,7 @@ export function NumberTicker({
     return () => cancelAnimationFrame(frame);
   }, [isInView, value, duration]);
 
-  const formatted = display.toLocaleString("en-US", {
+  const formatted = display.toLocaleString("vi-VN", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   });

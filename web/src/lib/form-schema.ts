@@ -212,19 +212,19 @@ export const STEPS: StepDef[] = [
   {
     id: 1,
     title: "Hạn ngạch & phát thải",
-    description: "Per cơ sở — hạn ngạch theo giai đoạn + sản lượng + hệ số + tín chỉ",
+    description: "Theo cơ sở — hạn ngạch theo giai đoạn + sản lượng + hệ số + tín chỉ",
     requiredFields: ["facility.facilityName", "allowance.periods", "activityData", "emissions.productionPlanned", "emissions.productionFactor"],
   },
   {
     id: 2,
     title: "Phương án tối ưu",
-    description: "Per cơ sở — đầu tư xanh + chuyển đổi nhiên liệu + ngân sách + thị trường",
+    description: "Theo cơ sở — đầu tư xanh + chuyển đổi nhiên liệu + ngân sách + thị trường",
     requiredFields: ["greenProjects", "market.priceBase", "market.budget"],
   },
   {
     id: 3,
     title: "ESG & cam kết",
-    description: "Company-level (optional) — hồ sơ tài chính xanh",
+    description: "Cấp doanh nghiệp (tùy chọn) — hồ sơ tài chính xanh",
     requiredFields: [],
   },
 ];
