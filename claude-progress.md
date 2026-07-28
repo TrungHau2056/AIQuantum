@@ -100,3 +100,29 @@
   - Open question data-flow.md: trường "quyết định lựa chọn phương án thực tế" required hay optional vẫn chưa chốt.
   - Playwright visual verification chưa chạy.
 - Bước tốt nhất tiếp theo: Bắt đầu Stage 2 — scaffolding backend (FastAPI + Docker Compose PostgreSQL + MinIO), hoặc mở rộng UI hiển thị danh sách 10 doanh nghiệp + Playwright visual verify.
+
+### Phiên 005
+
+- Ngày: 2026-07-28
+- Mục tiêu: Xây wizard nhập dữ liệu doanh nghiệp (/ingest) — spec + UI, gom theo 4 nhóm.
+- Đã hoàn thành:
+  - Viết `docs/form-spec.md`: spec 4 nhóm (Thông tin DN / Hạn ngạch & phát thải / Phương án tối ưu / ESG), map vào 11-bảng data model, validation cross-field, data completeness tiers, output sau submit.
+  - Tạo `web/src/lib/form-schema.ts`: TypeScript types cho IngestFormData (company, facility, activityData, emissions, allowance, credits, greenProjects, market, fuelSwitch, actualDecision, esg); STEPS 4 nhóm; `calcCompleteness` (17 required checks); `calcComplianceGap` (forecast = emissions OR (prodActual + planned) × factor; gap = allowance − forecast − credits).
+  - Tạo `web/src/components/onboarding/ingest-wizard.tsx`: wizard 4 section với step navigation, completeness bar, validation per-step, auto-calc Compliance Gap live preview, summary modal. Upload Excel/CSV stub cho activity data. Mảng dynamic cho activityData, credits, greenProjects.
+  - Tạo `web/src/app/ingest/page.tsx`: route /ingest.
+  - Sửa `web/src/components/layout/app-shell.tsx`: truyền navItems (role home + "Nhập dữ liệu" /ingest) vào Sidebar thay vì mảng trống; xóa roleNav export không dùng; thêm useRole + roleLabels.
+  - Thiết kế form theo cấu trúc 4 nhóm từ user: Nhóm 1 (DN + cơ sở), Nhóm 2 (hạn ngạch + phát thải + sản lượng + hệ số + tín chỉ), Nhóm 3 (phương án đầu tư + chuyển đổi nhiên liệu + thị trường + ngân sách + quyết định thực tế optional), Nhóm 4 (ESG optional).
+  - Giữ 2 điều chỉnh từ spec cũ: (a) chuỗi dữ liệu theo tháng cho forecasting, (b) cả % giảm VÀ absolute tCO₂e/năm cho abatement.
+  - `actualDecision` (quyết định lựa chọn phương án thực tế) = OPTIONAL — doanh nghiệp nhập trước khi quyết định, quay lại cập nhật sau; giá trị cho regulator: so sánh thực tế vs khuyến nghị optimizer (adoption rate xanh).
+- Xác minh đã chạy:
+  - `npm run lint` PASS — 0 lỗi, 0 cảnh báo.
+  - `npm run build` PASS — 6 route static: `/`, `/enterprise`, `/investor`, `/bank`, `/regulator`, `/ingest`.
+- Bằng chứng đã ghi lại: build output trong progress; route /ingest trong build output.
+- Tệp hoặc artifact đã cập nhật: `docs/form-spec.md`, `web/src/lib/form-schema.ts`, `web/src/components/onboarding/ingest-wizard.tsx`, `web/src/app/ingest/page.tsx`, `web/src/components/layout/app-shell.tsx`, `claude-progress.md` (file này).
+- Rủi ro đã biết hoặc vấn đề chưa được giải quyết:
+  - Wizard dùng mock state (Stage 1) — chưa POST API (Stage 2: F11 ingest → Carbon Data Ledger).
+  - Upload Excel/CSV là stub (onChange rỗng) — chưa parse file thật.
+  - `actualDecision` optional → regulator có thể thấy ít dữ liệu trong prototype.
+  - Chưa có multi-facility UI (doanh nghiệp đa cơ sở lặp Nhóm 1 — prototype 1 cơ sở).
+  - Playwright visual verification chưa chạy.
+- Bước tốt nhất tiếp theo: Playwright visual verify /ingest (desktop + mobile), hoặc bắt đầu Stage 2 (FastAPI + Docker Compose PostgreSQL + MinIO + parser Excel thật).
