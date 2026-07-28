@@ -22,6 +22,8 @@ import {
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 const fmtM = (n: number) => `${(n / 1_000_000).toFixed(2)}M`;
+// Format VND: chia cho 1 tỷ → "X,X tỷ VND"
+const fmtVndB = (n: number) => `${(n / 1_000_000_000).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 })} tỷ VND`;
 
 const leverData = [
   { name: "Hạn ngạch", value: forecast.allowance, fill: "var(--chart-1)" },
@@ -92,8 +94,8 @@ export default function EnterprisePage() {
         />
         <KpiCard
           title="Ngân sách tuân thủ"
-          value={`$${(forecast.complianceBudget / 1_000_000).toFixed(2)}M`}
-          hint="USD"
+          value={fmtVndB(forecast.complianceBudget)}
+          hint="VND"
           icon={Wallet}
           tone="default"
         />
@@ -208,7 +210,7 @@ export default function EnterprisePage() {
                       <span className="text-xs">{opt.name}</span>
                     </div>
                   </TableCell>
-                  <TableCell className="text-right">${fmt(opt.capex)}</TableCell>
+                  <TableCell className="text-right">{fmtVndB(opt.capex)}</TableCell>
                   <TableCell className="text-right">{opt.reductionPct}%</TableCell>
                   <TableCell className="text-right">{fmt(opt.reductionTco2e)}</TableCell>
                   <TableCell className="text-right">{opt.paybackYears} năm</TableCell>
@@ -227,17 +229,17 @@ export default function EnterprisePage() {
       <Card>
         <CardHeader>
           <CardTitle>Phân tích What-if theo giá carbon</CardTitle>
-          <CardDescription>Ngưỡng quyết định: dưới $10/tCO₂e nên mua tín chỉ, trên $10 nên đầu tư công nghệ</CardDescription>
+          <CardDescription>Ngưỡng quyết định: dưới 250.000 VND/tCO₂e nên mua tín chỉ, trên 250.000 nên đầu tư công nghệ</CardDescription>
         </CardHeader>
         <CardContent>
           <ResponsiveContainer width="100%" height={320}>
             <ComposedChart data={whatIfScenarios}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="carbonPrice" label={{ value: "Giá carbon ($/tCO₂e)", position: "insideBottom", offset: -5, fontSize: 12 }} />
-              <YAxis label={{ value: "Chi phí ($)", angle: -90, position: "insideLeft", fontSize: 12 }} tickFormatter={(v) => `${v / 1_000_000}M`} />
-              <Tooltip formatter={(v) => `$${fmt(Number(v))}`} />
+              <XAxis dataKey="carbonPrice" label={{ value: "Giá carbon (nghìn VND/tCO₂e)", position: "insideBottom", offset: -5, fontSize: 12 }} />
+              <YAxis label={{ value: "Chi phí (tỷ VND)", angle: -90, position: "insideLeft", fontSize: 12 }} tickFormatter={(v) => `${(v / 1_000_000_000).toFixed(0)}`} />
+              <Tooltip formatter={(v) => fmtVndB(Number(v))} />
               <Legend />
-              <ReferenceLine x={10} stroke="var(--chart-4)" strokeDasharray="5 5" label={{ value: "Ngưỡng quyết định", fontSize: 11, fill: "var(--chart-4)" }} />
+              <ReferenceLine x={250} stroke="var(--chart-4)" strokeDasharray="5 5" label={{ value: "Ngưỡng quyết định", fontSize: 11, fill: "var(--chart-4)" }} />
               <Bar dataKey="buyCreditsCost" name="Mua tín chỉ" fill="var(--chart-3)" radius={[4, 4, 0, 0]} />
               <RLine type="monotone" dataKey="investTechCost" name="Đầu tư công nghệ" stroke="var(--chart-1)" strokeWidth={2} dot={false} />
             </ComposedChart>
@@ -256,15 +258,15 @@ export default function EnterprisePage() {
             <div className="grid grid-cols-3 gap-3 text-center">
               <div className="rounded-lg border p-3">
                 <div className="text-xs text-muted-foreground">Không bù trừ</div>
-                <div className="mt-1 text-lg font-bold text-destructive">${costImpact.withoutOffset}M</div>
+                <div className="mt-1 text-lg font-bold text-destructive">{costImpact.withoutOffset} triệu USD</div>
               </div>
               <div className="rounded-lg border p-3">
                 <div className="text-xs text-muted-foreground">Bù trừ 30%</div>
-                <div className="mt-1 text-lg font-bold text-primary">${costImpact.withOffset}M</div>
+                <div className="mt-1 text-lg font-bold text-primary">{costImpact.withOffset} triệu USD</div>
               </div>
               <div className="rounded-lg border border-primary/30 bg-primary/5 p-3">
                 <div className="text-xs text-muted-foreground">Tiết kiệm</div>
-                <div className="mt-1 text-lg font-bold text-primary">${costImpact.reduction}M</div>
+                <div className="mt-1 text-lg font-bold text-primary">{costImpact.reduction} triệu USD</div>
               </div>
             </div>
             <Separator />

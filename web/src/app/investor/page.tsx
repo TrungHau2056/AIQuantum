@@ -184,7 +184,7 @@ export default function InvestorPage() {
             <div className="rounded-lg border p-4">
               <div className="text-xs text-muted-foreground">Tổng vốn xanh cần huy động</div>
               <div className="mt-1 text-xl font-bold text-primary">
-                <NumberTicker value={4.5} decimals={1} prefix="$" suffix="M" />
+                <NumberTicker value={108} decimals={0} suffix=" tỷ VND" />
               </div>
             </div>
             <div className="rounded-lg border p-4">

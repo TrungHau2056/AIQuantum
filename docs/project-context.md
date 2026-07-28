@@ -1,227 +1,401 @@
 # Project Context — CarbonPilot (AI-Quantum Challenge 2026)
 
-This file is the faithful reference for the competition proposal. It is the "dig deeper" layer referenced by [CLAUDE.md](../CLAUDE.md). Preserve the legal document references and numbers verbatim when implementing domain logic.
+Mẫu hồ sơ đề xuất ý tưởng và bài toán — Cuộc thi Trí tuệ nhân tạo và Lượng tử trong Kinh tế - Tài chính - Kế toán lần thứ I, năm 2026. File này là bản faithful (chi tiết, chính xác) được tham chiếu bởi [CLAUDE.md](../CLAUDE.md). Giữ nguyên các văn bản pháp lý và số liệu khi triển khai logic nghiệp vụ.
 
-- Competition: AI-Quantum Challenge 2026 — Cuộc thi Trí tuệ nhân tạo và Lượng tử trong Kinh tế - Tài chính - Kế toán lần thứ I (Vòng 1)
-- Solution name: **CarbonPilot**
-- Domain: Vietnam carbon market / ETS compliance decision-support
+- **Tên đề tài**: AI + Quantum Carbon & Green Finance Decision Platform
+- **Tên nội bộ (code)**: CarbonPilot
+- **Cuộc thi**: AI-Quantum Challenge 2026 — Vòng 1
+- **Domain**: Thị trường carbon Việt Nam / ETS compliance decision-support
 
----
-
-## Part I. Team info (template — to be filled)
-
-- Mã đội / Tên đội / Tên đề tài: _to fill_
-- Lĩnh vực: ☐ Kinh tế ☐ Tài chính ☐ Kế toán ☐ Liên ngành
-- Nhóm chủ đề: ☐ AI cho Phân tích Kinh tế vĩ mô ☐ AI cho Dịch vụ Tài chính thông minh ☐ AI cho Quản trị Rủi ro và Tuân thủ ☐ Quantum Computing cho Tài chính ☐ AI cho Chính sách công ☐ AI cho Giáo dục tài chính ☐ Khác
-- Thành viên (Hậu, Vinh referenced in appendix): _to fill — STT, Họ tên, Ngành học, Trường, CCCD, Email, Điện thoại, Vai trò_
+> Ghi chú hoàn thiện hồ sơ: Các mục về mã đội, tên đội, CCCD và thông tin cá nhân thành viên để ở dạng `[Điền sau]`. Toàn bộ nội dung chuyên môn, bài toán, dữ liệu MVP, hướng giải và phụ lục đã điền sẵn.
 
 ---
 
-## Part II. Executive Summary
+## Phần I. Thông tin đội thi
 
-1. **Tên ý tưởng**: CarbonPilot — nền tảng hỗ trợ quyết định tuân thủ và tài chính carbon.
-2. **Bài toán**: Tích hợp và chuẩn hóa dữ liệu phát thải/hạn ngạch/tín chỉ carbon đang phân tán để doanh nghiệp ra quyết định tuân thủ tối ưu; giúp ngân hàng, nhà đầu tư, cơ quan quản lý dựa trên dữ liệu minh bạch.
-3. **Giải pháp**: Nền tảng chuyển dữ liệu phân tán thành dự báo, cảnh báo và khuyến nghị hành động; kết hợp AI (chuẩn hóa/dự báo/anomaly) + tối ưu hóa (MILP/QUBO quantum-inspired) + LLM local (diễn giải/báo cáo).
-4. **Giá trị**: Giảm chi phí tuân thủ, tăng khả năng tiếp cận vốn xanh, thúc đẩy Net Zero 2050.
-5. **Công nghệ**: AI/ML, NLP/LLM (local), Quantum-inspired Optimization (MILP, QUBO, Simulated Annealing).
+| Mục | Thông tin |
+|---|---|
+| Mã đội | [Điền sau theo mã do Ban Tổ chức cấp] |
+| Tên đội | [Điền tên đội] |
+| Tên đề tài/ý tưởng | AI + Quantum Carbon & Green Finance Decision Platform |
+| Lĩnh vực | ☒ Liên ngành ☒ Tài chính ☒ Kinh tế ☐ Kế toán |
+| Nhóm chủ đề | ☒ AI cho Quản trị Rủi ro và Tuân thủ ☒ Quantum Computing cho Tài chính ☒ AI cho Dịch vụ Tài chính thông minh ☒ AI cho Chính sách công ☐ Khác |
+
+### Thông tin thành viên
+
+| STT | Họ tên | Ngành học | Trường | CCCD | Email | Điện thoại | Vai trò |
+|---|---|---|---|---|---|---|---|
+| 1 | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | Trưởng nhóm / Product Owner |
+| 2 | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | AI & Data Lead |
+| 3 | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | [Điền sau] | Finance & Carbon Market Analyst |
 
 ---
 
-## Part III. Mô tả bài toán thực tiễn (Tiêu chí 1 — 25%)
+## Phần II. Tóm tắt ý tưởng (Executive Summary)
+
+1. **Tên ý tưởng**: AI + Quantum Carbon & Green Finance Decision Platform (tên ngắn gọn khi trình bày: CarbonIQ Quantum hoặc GreenTwin Carbon).
+2. **Bài toán cần giải quyết**: Việt Nam đã đặt mục tiêu phát thải ròng bằng 0 vào năm 2050 và đang hình thành thị trường carbon trong nước. Trong giai đoạn đầu, doanh nghiệp thuộc nhóm phát thải lớn phải kiểm kê khí nhà kính, quản lý hạn ngạch, nộp trả hạn ngạch và cân nhắc giao dịch tín chỉ carbon/hạn ngạch. Tuy nhiên, dữ liệu phát thải, sản xuất, năng lượng, ESG, hạn ngạch và tín chỉ carbon còn phân tán, thiếu chuẩn hóa và khó kiểm chứng, khiến doanh nghiệp khó ra quyết định nên mua tín chỉ, đầu tư công nghệ xanh hay kết hợp nhiều phương án.
+3. **Giải pháp đề xuất**: Đề xuất xây dựng một nền tảng Decision Infrastructure cho carbon và tài chính xanh, không thay thế sàn giao dịch carbon mà bổ sung lớp dữ liệu và trí tuệ ra quyết định cho doanh nghiệp. Nền tảng dùng AI để thu thập, chuẩn hóa, kiểm tra chất lượng dữ liệu và tạo Carbon Digital Twin ở cấp cơ sở; sau đó dùng mô hình tối ưu quantum-inspired để đề xuất tổ hợp quyết định tối ưu: mua tín chỉ/hạn ngạch, dùng tín chỉ đang sở hữu, đầu tư công nghệ giảm phát thải, mua điện xanh hoặc kết hợp.
+4. **Giá trị mang lại**: Giải pháp giúp doanh nghiệp giảm thời gian tổng hợp dữ liệu carbon, đánh giá trạng thái thiếu/dư hạn ngạch và mô phỏng chi phí tuân thủ trước khi giao dịch. Ngân hàng và nhà đầu tư có thể dùng Green Finance Profile được chuẩn hóa để thẩm định nhanh hơn các khoản vay/dự án xanh. Cơ quan quản lý có thêm lớp dữ liệu tổng hợp, truy vết và cảnh báo bất thường để điều hành thị trường minh bạch hơn.
+5. **Công nghệ dự kiến**:
+
+| Công nghệ | Mục đích sử dụng trong hệ thống |
+|---|---|
+| AI/ML | Tự động chuẩn hóa dữ liệu sản xuất, năng lượng, nhiên liệu; dự báo phát thải cuối kỳ; phát hiện bất thường trong dữ liệu. |
+| NLP/LLM | Đọc báo cáo ESG, báo cáo kiểm kê khí nhà kính, hóa đơn điện/nhiên liệu và trích xuất các trường dữ liệu liên quan. |
+| Data quality engine | Kiểm tra đơn vị đo, kỳ báo cáo, dữ liệu thiếu, trùng lặp, sai lệch bất thường; gắn điểm tin cậy dữ liệu. |
+| Optimization / Quantum-inspired | Giải bài toán tối ưu tổ hợp giữa mua tín chỉ, dùng tín chỉ, đầu tư công nghệ, mua điện xanh dưới ràng buộc ngân sách, hạn ngạch, pháp lý và mục tiêu ESG. |
+| Dashboard + API | Cung cấp giao diện cho doanh nghiệp, ngân hàng/nhà đầu tư và cơ quan quản lý; cho phép chia sẻ dữ liệu theo quyền. |
+
+---
+
+## Phần III. Mô tả bài toán thực tiễn (Tiêu chí 1 — 25%)
 
 ### 1. Bối cảnh
-- COP26: Việt Nam cam kết Net Zero 2050; ước tính cần ~6.8% GDP/năm (~368 tỷ USD lũy kế đến 2040), khoảng một nửa từ khu vực tư nhân.
-- Khung pháp lý thị trường carbon (từ đầu 2025):
-  - Quyết định 13/2024/QĐ-TTg — danh mục >2000 cơ sở phải kiểm kê khí nhà kính (~30% phát thải quốc gia).
-  - Nghị định 119/2025/NĐ-CP — sửa đổi/bổ sung quy định giảm nhẹ phát thải khí nhà kính.
-  - Quyết định 263/QĐ-TTg — phê duyệt tổng hạn ngạch phát thải thí điểm 2025–2026.
-  - Quyết định 699/QĐ-BNNMT — phân bổ hạn ngạch thí điểm cho 110 cơ sở (nhiệt điện, sắt thép, xi măng).
-  - Nghị định 29/2026/NĐ-CP — thiết lập Sàn giao dịch carbon trong nước.
-  - Thông tư 11/2026/TT-BNNMT — quản lý, vận hành Hệ thống đăng ký quốc gia về hạn ngạch phát thải và tín chỉ carbon.
-  - Quyết định 21/2025/QĐ-TTg — Taxonomy Xanh (dùng cho thẩm định tín dụng xanh / phân loại hoạt động xanh).
-  - 2026-06-29: Sàn giao dịch carbon trong nước chính thức khai trương.
-- Khoảng trống: hạ tầng khớp lệnh/thanh toán đã hình thành, nhưng hạ tầng ra quyết định (thu thập, chuẩn hóa dữ liệu phát thải, lựa chọn phương án tài chính tối ưu) còn thiếu vắng cho doanh nghiệp, ngân hàng, nhà đầu tư.
+
+Tại COP26, Việt Nam đã đưa ra cam kết đạt phát thải ròng bằng 0 vào năm 2050. World Bank Group/IFC cũng nhấn mạnh Việt Nam cần huy động khu vực tư nhân và sử dụng dữ liệu, công cụ định lượng để ưu tiên các lựa chọn chuyển đổi xanh [R1].
+
+Về khung pháp lý trong nước, Quyết định 13/2024/QĐ-TTg ban hành danh mục lĩnh vực, cơ sở phát thải khí nhà kính phải thực hiện kiểm kê [R2]. Quyết định 263/QĐ-TTg phê duyệt tổng hạn ngạch phát thải khí nhà kính thí điểm cho năm 2025-2026 [R3]. Bộ Nông nghiệp và Môi trường đã ban hành Quyết định 699/QĐ-BNNMT phân bổ hạn ngạch thí điểm cho 110 cơ sở thuộc các ngành nhiệt điện, xi măng và sắt thép [R4]. Cùng với đó, Nghị định 29/2026/NĐ-CP thiết lập sàn giao dịch các-bon trong nước [R5] và Thông tư 11/2026/TT-BNNMT quy định quản lý, vận hành Hệ thống đăng ký quốc gia [R6].
+
+Trong bối cảnh đó, vấn đề không chỉ là tạo nơi mua bán tín chỉ carbon. Vấn đề lớn hơn là làm sao tạo được dữ liệu carbon đủ sạch, đủ chuẩn và đủ tin cậy để doanh nghiệp biết mình đang thiếu/dư hạn ngạch bao nhiêu, nên mua tín chỉ hay đầu tư giảm phát thải, và ngân hàng có thể dùng thông tin đó để thẩm định tín dụng xanh.
 
 ### 2. Vấn đề cụ thể
-- Vấn đề cốt lõi: chưa chuyển dữ liệu phát thải thành quyết định tối ưu, trong khi tuân thủ trở nên cấp bách và bắt buộc.
-- Dữ liệu doanh nghiệp có (sản lượng, tiêu thụ năng lượng, nhiên liệu, phát thải, hạn ngạch) quản lý rời rạc, chỉ dùng cho báo cáo, chưa hỗ trợ ra quyết định.
-- Tổng hạn ngạch phân bổ cho 3 ngành được thiết kế **thấp hơn** phát thải thực tế dự kiến 2025–2026 → phần lớn doanh nghiệp chắc chắn thiếu hụt hạn ngạch ngay từ đầu.
-- Các phương án tuân thủ (mỗi phương án có chi phí, hiệu quả, thời gian hoàn vốn, rủi ro khác nhau):
-  - Đầu tư công nghệ giảm phát thải
-  - Mua thêm hạn ngạch
-  - Sử dụng tín chỉ carbon bù trừ (tối đa 30% nghĩa vụ nộp trả)
-  - Vay trước tối đa 15% hạn ngạch giai đoạn kế tiếp
-- Chịu tác động bởi biến động giá carbon và quy định thị trường (giới hạn bù trừ, nguy cơ khấu trừ hạn ngạch kỳ sau nếu không hoàn thành).
-- Hiện doanh nghiệp đánh giá bằng bảng tính/kin nghiệm, thiếu công cụ mô phỏng kịch bản, dự báo, khuyến nghị tối ưu.
-- Đối tượng trực tiếp: 110 cơ sở thuộc 3 ngành — nhiệt điện (34), sắt thép (25), xi măng (51) — theo QĐ 263 và QĐ 699; tổng hạn ngạch >511 triệu tCO₂e (243,08 triệu năm 2025; 268,39 triệu năm 2026); nộp trả hạn ngạch trước 31/12/2027.
-- Đối tượng gián tiếp: doanh nghiệp xuất khẩu (đặc biệt thép) chịu CBAM; ngân hàng, nhà đầu tư, cơ quan quản lý cần thông tin carbon đã chuẩn hóa.
-- Tác động tài chính lớn: bù trừ 30% bằng tín chỉ có thể giảm tổng chi phí tuân thủ 3 ngành từ ~420,5 triệu USD xuống 68,9 triệu USD.
+
+| Câu hỏi | Trả lời |
+|---|---|
+| Hiện đang có vấn đề gì? | Dữ liệu carbon của doanh nghiệp đang phân tán giữa hóa đơn điện, nhiên liệu, ERP, SCADA, báo cáo ESG, báo cáo môi trường và bảng tính nội bộ. Dữ liệu hạn ngạch/tín chỉ lại nằm ở registry, sàn/lưu ký hoặc hồ sơ giao dịch. Vì vậy, doanh nghiệp khó có một bức tranh thống nhất để ra quyết định. |
+| Ai bị ảnh hưởng? | Doanh nghiệp phát thải lớn, ngân hàng cấp tín dụng xanh, nhà đầu tư ESG, cơ quan quản lý thị trường carbon và các đơn vị thẩm định/kiểm toán dữ liệu phát thải. |
+| Mức độ ảnh hưởng? | Chi phí kiểm kê và lập báo cáo tăng; quyết định mua/bán tín chỉ thiếu cơ sở; ngân hàng mất thời gian thẩm định; cơ quan quản lý khó giám sát dữ liệu và nguy cơ phát sinh số liệu không đáng tin cậy. |
+| Khoảng trống hiện nay? | Nhiều giải pháp hiện có tập trung vào carbon accounting, ESG reporting hoặc giao dịch tín chỉ. Khoảng trống là lớp mô phỏng và tối ưu quyết định giữa tuân thủ carbon và tài chính xanh. |
 
 ### 3. Minh chứng
-| Nội dung | Giá trị | Nguồn | Ý nghĩa |
+
+| Nội dung | Giá trị | Nguồn dữ liệu | Ý nghĩa với bài toán |
 |---|---|---|---|
-| ETS VN bước vào thí điểm | Thí điểm 2025–2026, vận hành sàn từ 2025 | ND 06/2022; ND 119/2025; QĐ 232 | Bài toán đã phát sinh thực tế |
-| Nhiều doanh nghiệp bắt buộc tham gia ETS | 110 cơ sở (34+25+51); >511 triệu tCO₂e 2025–2026 | QĐ 263; QĐ 699 | Quy mô đối tượng lớn |
-| Hạn ngạch thấp hơn phát thải dự kiến | Tổng hạn ngạch < tổng phát thải dự kiến 3 ngành | Phương án phân bổ BNNMT | Doanh nghiệp phải chọn phương án tuân thủ ngay từ đầu |
-| Carbon là chi phí tài chính, quyết định tạo chênh lệch lớn | Bù trừ 30% giảm chi phí từ ~420,5M → 68,9M USD | Nghiên cứu Impact Assessment ETS (Vietnam News) | Cần công cụ đánh giá/lựa chọn phương án |
-| Ra quyết định dưới nhiều ràng buộc | Bù trừ tối đa 30%, vay tối đa 15% kỳ sau; giá theo cung cầu | ND 119/2025 | Cần mô phỏng nhiều kịch bản đồng thời |
+| Cam kết khí hậu | Việt Nam đặt mục tiêu Net Zero 2050 và cần huy động khu vực tư nhân cho chuyển đổi xanh. | World Bank Group/IFC CCDR [R1] | Tạo nhu cầu dài hạn về đo lường, quản lý và tối ưu dữ liệu phát thải. |
+| Đối tượng kiểm kê | Quyết định 13/2024/QĐ-TTg ban hành danh mục lĩnh vực, cơ sở phải kiểm kê khí nhà kính. | Cổng TTĐT Chính phủ [R2] | Tạo tập khách hàng mục tiêu cho MVP: các cơ sở phát thải lớn phải có dữ liệu kiểm kê. |
+| Hạn ngạch thí điểm | Quyết định 263/QĐ-TTg phê duyệt tổng hạn ngạch phát thải khí nhà kính thí điểm cho năm 2025-2026. | Cổng TTĐT Chính phủ [R3] | Cho thấy bài toán đã chuyển từ báo cáo tự nguyện sang quản lý nghĩa vụ tuân thủ. |
+| Phân bổ cấp cơ sở | Quyết định 699/QĐ-BNNMT áp dụng cho 110 cơ sở thuộc nhiệt điện, xi măng, sắt thép. | Cục Biến đổi khí hậu - Bộ NN&MT [R4] | MVP nên tập trung đúng 3 ngành này vì có nhu cầu tuân thủ và dữ liệu phát thải rõ nhất. |
+| Hạ tầng thị trường | Nghị định 29/2026/NĐ-CP quy định sàn giao dịch các-bon trong nước; Thông tư 11/2026/TT-BNNMT quy định Hệ thống đăng ký quốc gia. | Cổng TTĐT Chính phủ [R5], [R6] | Nền tảng cần kết nối hoặc ít nhất mô phỏng được dữ liệu registry/sàn/lưu ký. |
 
 ### 4. Phát biểu bài toán
-Làm thế nào để tích hợp và chuẩn hóa các dữ liệu phân tán liên quan đến phát thải khí nhà kính, hạn ngạch và tín chỉ carbon nhằm giúp doanh nghiệp đưa ra các quyết định tối ưu và giúp nhà đầu tư, ngân hàng, cơ quan quản lý dựa trên dữ liệu minh bạch, tin cậy, góp phần thúc đẩy lộ trình Net Zero 2050 của Việt Nam.
+
+Làm thế nào để biến dữ liệu sản xuất, năng lượng, phát thải, hạn ngạch, tín chỉ carbon và ESG đang phân tán của doanh nghiệp thành một Carbon Digital Twin đủ tin cậy, nhằm giúp doanh nghiệp mô phỏng và lựa chọn phương án tuân thủ carbon tối ưu về chi phí, đồng thời tạo hồ sơ dữ liệu đủ chuẩn cho ngân hàng, nhà đầu tư và cơ quan quản lý?
 
 ---
 
-## Part IV. Giá trị ứng dụng và sự cần thiết (Tiêu chí 2 — 20%)
+## Phần IV. Giá trị ứng dụng và sự cần thiết (Tiêu chí 2 — 20%)
 
 ### 1. Tầm quan trọng
-- 2.166 cơ sở phải kiểm kê khí nhà kính (QĐ 13/2024) → quy mô nhu cầu quản lý dữ liệu carbon mở rộng.
-- Dữ liệu carbon/ESG không chỉ phục vụ tuân thủ mà là cơ sở ra quyết định chiến lược (dự báo nhu cầu hạn ngạch, lựa chọn mua tín chỉ/đầu tư công nghệ).
-- Ngân hàng/nhà đầu tư cần dữ liệu kiểm chứng để triển khai tài chính xanh. Cơ quan quản lý cần dữ liệu minh bạch để giám sát thị trường, thúc đẩy Net Zero 2050.
+
+Bài toán ảnh hưởng trực tiếp tới doanh nghiệp phát thải lớn vì các đơn vị này cần kiểm kê khí nhà kính, quản lý hạn ngạch và chuẩn bị nghĩa vụ tuân thủ. Bài toán cũng ảnh hưởng tới ngân hàng/nhà đầu tư vì tín dụng xanh cần dữ liệu ESG và carbon có thể kiểm chứng; đồng thời ảnh hưởng tới cơ quan quản lý vì thị trường carbon chỉ vận hành minh bạch khi dữ liệu đầu vào đáng tin cậy.
 
 ### 2. Tính cấp thiết
-- Sàn giao dịch carbon đi vào vận hành cuối 6/2026 → chuyển từ quản lý phát thải sang cơ chế thị trường.
-- Nếu không sớm xây dựng nền tảng dữ liệu thống nhất: doanh nghiệp khó tuân thủ/tối ưu; ngân hàng/nhà đầu tư mất thời gian thẩm định; cơ quan quản lý khó giám sát.
+
+- Thị trường carbon trong nước đã có khung pháp lý và đang đi vào giai đoạn vận hành thí điểm; doanh nghiệp cần công cụ chuẩn bị dữ liệu ngay từ sớm.
+- Doanh nghiệp không thể ra quyết định chỉ dựa trên tổng lượng CO2 cuối kỳ; cần dự báo trước thiếu/dư hạn ngạch và so sánh chi phí giữa mua tín chỉ với đầu tư xanh.
+- Tài chính xanh và taxonomy xanh yêu cầu dữ liệu có chứng cứ, có lineage và có khả năng kiểm tra; nếu không chuẩn hóa từ đầu, doanh nghiệp sẽ khó tiếp cận vốn xanh.
+- Nếu không có hệ thống kiểm soát chất lượng dữ liệu, thị trường có thể gặp rủi ro số liệu không nhất quán, trùng lặp, sai đơn vị đo hoặc thiếu chứng từ nguồn.
 
 ### 3. Lợi ích kỳ vọng
-- **Doanh nghiệp**: tối ưu chi phí tuân thủ; dự báo thiếu/dư hạn ngạch; hỗ trợ quyết định chiến lược (mua tín chỉ, đầu tư công nghệ xanh, chuyển đổi năng lượng); nâng cao khả năng tiếp cận vốn xanh.
-- **Nhà đầu tư**: tiết kiệm thời gian thu thập/phân tích ESG; đánh giá rủi ro carbon; cơ sở dữ liệu minh bạch kiểm chứng; nâng cao hiệu quả phân bổ vốn.
-- **Ngân hàng**: rút ngắn thời gian thẩm định tín dụng xanh; đánh giá rủi ro ESG; hồ sơ carbon truy xuất được; xây dựng danh mục tín dụng xanh.
-- **Cơ quan quản lý**: quản lý dữ liệu phát thải tập trung; giám sát tuân thủ, phát hiện bất thường; cơ sở dữ liệu truy xuất nguồn gốc; nâng cao minh bạch thị trường.
+
+| Đối tượng | Lợi ích |
+|---|---|
+| Người dùng trực tiếp trong doanh nghiệp | Giảm thời gian nhập liệu và tổng hợp báo cáo; biết ngay trạng thái thiếu/dư hạn ngạch; có kịch bản hành động rõ ràng trước kỳ nộp trả. |
+| Doanh nghiệp | Tối ưu chi phí tuân thủ carbon; giảm rủi ro bị thiếu hạn ngạch; hỗ trợ lập kế hoạch đầu tư công nghệ xanh và xin vay xanh. |
+| Ngân hàng/nhà đầu tư | Có Green Finance Profile gồm phát thải, trạng thái tuân thủ, dự án giảm phát thải, chứng từ nguồn và điểm tin cậy dữ liệu để rút ngắn thời gian thẩm định. |
+| Cơ quan quản lý | Có dữ liệu tổng hợp theo ngành/địa phương, cảnh báo bất thường và audit trail để nâng cao tính minh bạch của thị trường carbon. |
+| Xã hội | Thúc đẩy giảm phát thải thực chất thay vì chỉ mua bù trừ; tăng minh bạch trong chuyển đổi xanh. |
 
 ### 4. Tác động dự kiến
-- **Kinh tế**: tối ưu chi phí tuân thủ; tăng hiệu quả phân bổ vốn xanh; giảm chi phí cơ hội/rủi ro; nâng cao năng lực cạnh tranh quốc tế (CBAM).
-- **Xã hội**: thúc đẩy chuyển đổi xanh/Net Zero 2050; tăng nhận thức quản trị carbon; tạo việc làm chất lượng cao; giảm bất bình đẳng tiếp cận vốn xanh.
-- **Công nghệ**: lớp hạ tầng dữ liệu carbon quốc gia đầu tiên kết hợp AI + quantum-inspired; mô hình Carbon Compliance cấp cơ sở mở rộng; đẩy mạnh AI+Quantum trong tài chính/môi trường; thiết lập tiêu chuẩn dữ liệu và audit trail (evidence vault) nền tảng MRV.
+
+| Nhóm tác động | Mô tả |
+|---|---|
+| Kinh tế | Giúp doanh nghiệp so sánh chi phí mua tín chỉ, vay mượn hạn ngạch, đầu tư công nghệ xanh và mua điện xanh; giảm chi phí cơ hội do ra quyết định muộn hoặc thiếu dữ liệu. |
+| Xã hội | Tăng năng lực tuân thủ và minh bạch hóa thông tin carbon; hỗ trợ mục tiêu Net Zero 2050. |
+| Công nghệ | Tạo lớp dữ liệu carbon chuẩn hóa kết hợp AI, tối ưu tổ hợp và audit trail; có thể mở rộng sang API cho ngân hàng/nhà đầu tư. |
 
 ---
 
-## Part V. Ý tưởng giải pháp (Tiêu chí 3 — 20%)
+## Phần V. Ý tưởng giải pháp (Tiêu chí 3 — 20%)
 
 ### 1. Mô tả tổng quan
-CarbonPilot: nền tảng giúp doanh nghiệp chuẩn hóa dữ liệu carbon phân tán và lựa chọn phương án tuân thủ/giảm phát thải phù hợp. Chuyển dữ liệu (phát thải, hạn ngạch, tín chỉ, sản lượng, ngân sách, phương án đầu tư) thành dự báo, cảnh báo, khuyến nghị hành động.
 
-- **Carbon Compliance Model** cấp cơ sở/nhà máy: dự báo phát thải cuối kỳ, xác định dư/thiếu hạn ngạch.
-- Đánh giá phương án: dùng tín chỉ hiện có, mua tín chỉ/hạn ngạch, chuyển đổi nhiên liệu, tối ưu vận hành, đầu tư công nghệ giảm phát thải.
-- So sánh theo: tổng chi phí vòng đời, chi phí trên mỗi tCO₂e giảm/bù trừ, thời gian triển khai, mức giảm phát thải thực tế, rủi ro tuân thủ. Dự án đầu tư thêm: NPV, IRR, ROI, thời gian hoàn vốn.
-- **LLM local** tổng hợp, cá nhân hóa trình bày, giải thích phương án. Các phép tính định lượng/tối ưu do công thức, Policy Rule Engine, Optimization Engine đảm bảo chính xác và kiểm chứng.
+Hệ thống được định vị là Carbon & Green Finance Decision Infrastructure — lớp hạ tầng dữ liệu và ra quyết định nằm giữa doanh nghiệp, sàn giao dịch carbon, registry/lưu ký, ngân hàng, nhà đầu tư và cơ quan quản lý. Hệ thống không tạo thêm một sàn carbon mới, mà giúp các bên có dữ liệu tốt hơn trước và sau giao dịch.
+
+MVP tập trung vào một use case hẹp nhưng giá trị cao: trợ lý tối ưu tuân thủ carbon cho doanh nghiệp có hạn ngạch. Doanh nghiệp upload hoặc nhập dữ liệu sản xuất, điện, nhiên liệu, phát thải, hạn ngạch, tín chỉ đang sở hữu và các phương án đầu tư xanh. Hệ thống tính trạng thái carbon, mô phỏng kịch bản và đưa ra khuyến nghị mua/đầu tư/kết hợp.
 
 ### 2. Công nghệ và mục đích sử dụng
 
-**2.1. Nền tảng dữ liệu carbon**
-- PostgreSQL: doanh nghiệp, cơ sở sản xuất, sản lượng, phát thải, hạn ngạch, tín chỉ, giá thị trường, phương án công nghệ, ESG.
-- MinIO/lưu trữ nội bộ: báo cáo, tài liệu bằng chứng.
-- Mỗi dữ liệu gắn: nguồn, thời gian cập nhật, đơn vị đo, trạng thái xác minh.
+| Thành phần | Công nghệ | Mục đích |
+|---|---|---|
+| Data ingestion | Parser XLSX/CSV/PDF, OCR chọn lọc, connector ERP/SCADA ở giai đoạn sau | Thu dữ liệu từ file doanh nghiệp, hóa đơn, báo cáo kiểm kê và báo cáo ESG. |
+| Data quality | Rule-based validation + anomaly detection | Phát hiện sai đơn vị, thiếu tháng, trùng hóa đơn, lệch cường độ phát thải bất thường. |
+| Emission engine | GHG Protocol/IPCC/local emission factors | Tính Scope 1, Scope 2 ở mức MVP; Scope 3 để giai đoạn sau. |
+| AI/NLP | LLM + information extraction | Đọc báo cáo ESG/kiểm kê, trích mục tiêu Net Zero, phát thải, dự án giảm phát thải. |
+| Forecast | Time-series ML/benchmarking | Dự báo phát thải cuối kỳ theo sản lượng, điện, nhiên liệu và kế hoạch sản xuất. |
+| Optimization | MILP/QUBO/quantum-inspired optimization | Tối ưu tổ hợp mua tín chỉ, dùng tín chỉ, đầu tư xanh, mua điện xanh dưới các ràng buộc. |
+| Governance | RBAC/ABAC, audit trail, evidence vault | Quản lý quyền chia sẻ dữ liệu cho ngân hàng, nhà đầu tư, verifier và cơ quan quản lý. |
 
-**2.2. Xử lý và kiểm tra dữ liệu** (Python, Polars/Pandas, Pydantic)
-- Ánh xạ trường từ Excel/CSV/biểu mẫu nội bộ về cấu trúc thống nhất.
-- Chuẩn hóa mã cơ sở, kỳ báo cáo, loại hoạt động, đơn vị đo, hệ số quy đổi.
-- Lưu đồng thời giá trị gốc, giá trị sau chuẩn hóa, nguồn dữ liệu, chứng từ.
-- Kiểm tra: dữ liệu thiếu, trùng chứng từ, sai định dạng, sai đơn vị, ngoài phạm vi.
-- Đối chiếu tổng tháng/quý/năm; đối chiếu sản lượng–tiêu thụ năng lượng–phát thải.
-- Phát hiện thay đổi bất thường (cường độ phát thải, nhiên liệu, sản lượng).
-- Gắn trạng thái xác minh + điểm chất lượng dữ liệu cho từng bản ghi.
-- Báo cáo ESG/tài liệu phi cấu trúc: OCR + LLM local trích xuất, lưu kèm vị trí và tài liệu nguồn; người dùng đối chiếu/xác nhận/chỉnh sửa trước khi vào phân tích.
+### 3. Quy trình xử lý
 
-**2.3. Mô hình ngôn ngữ triển khai local**
-- Mô hình mã nguồn mở ~4B–9B tham số, lượng tử hóa, chạy hạ tầng nội bộ.
-- Mục đích: tổng hợp hồ sơ carbon; mô tả điều kiện áp dụng/rủi ro; nhóm và diễn giải phương án ứng viên; giải thích dự báo/tối ưu; sinh báo cáo; chatbot tư vấn.
-- **Không tự tạo số liệu tài chính, hiệu quả giảm phát thải, hoặc quy định pháp luật** — phải lấy từ nguồn đã kiểm chứng.
+1. Doanh nghiệp nhập/upload dữ liệu: sản lượng, điện, nhiên liệu, phát thải đã kiểm kê nếu có, hạn ngạch, tín chỉ, giá carbon giả định và phương án đầu tư xanh.
+2. AI chuẩn hóa và kiểm tra chất lượng dữ liệu: đồng bộ đơn vị đo, kỳ báo cáo, nguồn chứng từ, độ đầy đủ và điểm tin cậy.
+3. Emission engine tính phát thải hiện tại và dự báo BAU cuối kỳ.
+4. Compliance engine tính chênh lệch hạn ngạch: phát thải dự báo − hạn ngạch − tín chỉ/hạn ngạch khả dụng.
+5. Scenario engine sinh các kịch bản: mua tín chỉ, đầu tư công nghệ xanh, mua điện xanh, vay mượn/điều chuyển hạn ngạch nếu phù hợp, hoặc kết hợp.
+6. Quantum-inspired optimizer chọn phương án có tổng chi phí thấp nhất hoặc điểm tổng hợp tốt nhất theo mục tiêu chi phí, tuân thủ, ESG và tài chính xanh.
+7. Dashboard xuất khuyến nghị, cảnh báo rủi ro, báo cáo tuân thủ và Green Finance Profile.
 
-**2.4. Kho công nghệ giảm phát thải và RAG (Technology Abatement Catalogue)**
-- Lưu: ngành/quy trình áp dụng, điều kiện kỹ thuật, CAPEX, OPEX, chi phí bảo trì, lượng phát thải giảm dự kiến, thời gian triển khai, tuổi thọ, công suất tối đa, rủi ro, tác động ESG, nguồn dữ liệu, mức tin cậy.
-- Retrieval lọc công nghệ phù hợp ngành, quy mô, ngân sách, điều kiện doanh nghiệp.
+### Ví dụ minh họa cho bài toán
 
-**2.5. Policy Rule Engine**
-- Mỗi quy tắc lưu: văn bản nguồn, điều/khoản, ngày hiệu lực, ngày hết hiệu lực, đối tượng áp dụng, người kiểm tra nội dung. Kết quả = cảnh báo/kiểm tra điều kiện tuân thủ, không phải kết luận pháp lý.
-- Mục đích: xác định nghĩa vụ tuân thủ; tính lượng tín chỉ tối đa; kiểm tra loại tín chỉ đủ điều kiện; cảnh báo thiếu hạn ngạch; kiểm tra phương án vi phạm.
+| Input của doanh nghiệp xi măng A (synthetic data theo logic ngành) | Giá trị |
+|---|---|
+| Sản lượng xi măng/năm | 3.000.000 tấn |
+| Phát thải dự báo BAU | 2.400.000 tCO₂e |
+| Hạn ngạch được cấp | 2.200.000 tCO₂e |
+| Thiếu hụt ban đầu | 200.000 tCO₂e |
+| Tín chỉ carbon đang có | 50.000 tCO₂e |
+| Giá tín chỉ/hạn ngạch giả định | 250.000 VND/tCO₂e |
+| Ngân sách đầu tư xanh | 80 tỷ VND |
+| Dự án ứng viên | Thu hồi nhiệt thải, CAPEX 70 tỷ VND, giảm 120.000 tCO₂e/năm, tiết kiệm điện 12 tỷ VND/năm |
 
-**2.6. Dự báo phát thải và hạn ngạch**
-- Giai đoạn đầu: phát thải cuối kỳ dự báo theo phát thải thực tế lũy kế + sản lượng kế hoạch còn lại + hệ số phát thải + lượng giảm từ biện pháp đã triển khai.
-- Khi đủ dữ liệu lịch sử: bổ sung XGBoost / LightGBM / Quantile Regression → kịch bản phát thải thấp/cơ sở/cao.
+Hướng giải của hệ thống:
 
-**2.7. Tối ưu phương án**
-- Mô hình hóa bằng **Mixed-Integer Linear Programming (MILP)** — Pyomo + solver HiGHS.
-- Bộ tối ưu quyết định: công nghệ lựa chọn, tỷ lệ công suất, lượng tín chỉ sử dụng, lượng hạn ngạch cần mua, thời điểm triển khai, ngân sách theo kỳ.
-- Mục tiêu: tối thiểu tổng chi phí đầu tư/vận hành/tuân thủ, đáp ứng ràng buộc pháp luật, ngân sách, tiến độ, sản lượng.
+- **Kịch bản 1 — Chỉ mua tín chỉ**: cần mua 150.000 tCO₂e sau khi dùng 50.000 tín chỉ sẵn có. Chi phí = 150.000 × 250.000 = 37,5 tỷ VND. Phương án này nhanh nhưng không giảm phát thải thật và không cải thiện nhiều hồ sơ tài chính xanh.
+- **Kịch bản 2 — Chỉ đầu tư công nghệ**: dự án giảm 120.000 tCO₂e/năm nhưng vẫn thiếu 30.000 tCO₂e sau khi dùng tín chỉ đang có; năm đầu cần 70 tỷ CAPEX và vẫn cần mua thêm 7,5 tỷ VND tín chỉ. Phương án này có lợi dài hạn nếu xét tiết kiệm năng lượng và rủi ro giá carbon tăng.
+- **Kịch bản 3 — Kết hợp**: dùng 50.000 tín chỉ đang có + đầu tư thu hồi nhiệt thải + mua thêm 30.000 tCO₂e. Đây là phương án cân bằng giữa tuân thủ ngắn hạn, giảm phát thải thật và cải thiện Green Finance Profile.
 
-**2.8. Thử nghiệm QUBO và tối ưu Quantum-inspired**
-- Phần lựa chọn có/không từng công nghệ biểu diễn dạng QUBO.
-- Prototype: ưu tiên **Simulated Annealing** trên máy tính thường để giải QUBO. QAOA trên simulator chỉ thử nghiệm mở rộng nếu thời gian cho phép.
-- So sánh với MILP về chi phí, thời gian tính toán, mức độ đáp ứng ràng buộc. **MILP là kết quả chuẩn trong prototype.**
+Hàm mục tiêu gợi ý:
 
-**2.9. Phân tích What-if và tài chính**
-- Mua tín chỉ/hạn ngạch: tổng chi phí tuân thủ, giá bình quân/tCO₂e, độ nhạy theo giá.
-- Dự án công nghệ: CAPEX, OPEX, NPV, IRR, ROI, thời gian hoàn vốn.
-- Phương án giảm phát thải: chi phí giảm bình quân, chi phí giảm biên.
-- Phương án kết hợp: tổng chi phí vòng đời, trạng thái tuân thủ, lượng phát thải thực tế giảm.
-- Scenario Engine mô phỏng biến động giá carbon, sản lượng, chi phí đầu tư, hiệu quả công nghệ → xác định ngưỡng giá mua tín chỉ/hạn ngạch/đầu tư công nghệ.
+```
+Minimize Total Cost = Cost_credit + CAPEX + OPEX_delta − Energy_savings − Avoided_future_carbon_cost
+```
 
-**2.10. Dashboard và phân quyền**
-- Doanh nghiệp là trung tâm: chủ sở hữu dữ liệu, nhập/xác nhận, dùng dự báo/phân tích/tối ưu, ra quyết định cuối.
-- Ngân hàng/nhà đầu tư/thẩm định/cơ quan quản lý: không mặc định truy cập dữ liệu nội bộ; chỉ xem chỉ số/hồ sơ/báo cáo doanh nghiệp chủ động chia sẻ hoặc dữ liệu nghĩa vụ báo cáo.
-- Phân biệt dữ liệu nội bộ / chỉ số dẫn xuất / hồ sơ chia sẻ. Quyền theo người dùng, mục đích, phạm vi, thời gian; mọi xem/tải/chia sẻ ghi nhật ký kiểm toán.
+Ràng buộc:
 
-### 3. Quy trình xử lý (8 bước)
-1. **Thu thập dữ liệu**: nhập trực tiếp hoặc tải Excel/CSV/tài liệu (phát thải, hạn ngạch, tín chỉ, sản lượng, ngân sách, phương án đầu tư, ESG).
-2. **Kiểm tra và chuẩn hóa**: kiểm tra định dạng/đơn vị/thiếu/trùng/bất thường trước khi lưu Carbon Data Ledger; trường tự động ánh xạ hiển thị để xác nhận; chỉ dữ liệu đã xác nhận/đủ độ tin cậy chuyển sang tính toán.
-3. **Xây dựng hồ sơ carbon**: tổng hợp cấp doanh nghiệp và cấp cơ sở (phát thải, cường độ phát thải, hạn ngạch, tín chỉ, ngân sách, ràng buộc kỹ thuật).
-4. **Dự báo và đánh giá tuân thủ**: Forecasting Engine dự báo phát thải cuối kỳ; Policy Rule Engine tính thiếu/dư hạn ngạch, giới hạn tín chỉ, rủi ro tuân thủ.
-5. **Tạo phương án ứng viên**: Retrieval Engine lọc công nghệ đủ điều kiện; Scenario Engine kết hợp công nghệ + tín chỉ + hạn ngạch + điều chỉnh vận hành → phương án ứng viên có cấu trúc; LLM local chỉ đặt tên/nhóm/giải thích.
-6. **Tính toán và tối ưu**: Calculation Engine tính CAPEX/OPEX/giảm phát thải/tổng chi phí vòng đời (+NPV/IRR/ROI/hoàn vốn cho dự án); Optimization Engine chọn tổ hợp đáp ứng quy định/ngân sách với tổng chi phí phù hợp nhất.
-7. **Phân tích kịch bản**: chạy kịch bản giá carbon/sản lượng/hiệu quả công nghệ → kiểm tra ổn định khuyến nghị, xác định ngưỡng giá quyết định.
-8. **Sinh báo cáo và chia sẻ**: doanh nghiệp kiểm tra, lựa chọn phương án, quyết định chỉ số/tài liệu chia sẻ; bên ngoài chỉ xem nội dung doanh nghiệp phê duyệt hoặc dữ liệu nghĩa vụ báo cáo.
+```
+Emissions_after_actions <= Allowance + eligible_credits + other_allowed_mechanisms
+CAPEX <= Budget
+Offset/credit usage <= legal_limit(versioned policy rule)
+Project_start_date, implementation_lag, project_lifetime are respected
+```
 
 ### 4. Tại sao chọn công nghệ này?
-- **Phù hợp**: ML cho dự báo/anomaly; Rule Engine cho tuân thủ; MILP cho tối ưu chi phí; QUBO/Quantum-inspired cho lựa chọn tổ hợp (sau MILP); LLM cho tổng hợp/diễn giải.
-- **Tốt hơn thủ công**: bảng tính khó quản lý dữ liệu phân tán, dễ bỏ sót quy định, khó đánh giá đồng thời nhiều tổ hợp. Giải pháp tự động hóa chuẩn hóa/dự báo/kiểm tra/tính toán/tối ưu/báo cáo; kết quả tái lập, truy xuất, cập nhật nhanh.
-- **Khả thi**: công nghệ mã nguồn mở (Python, PostgreSQL, FastAPI, Pyomo, HiGHS, LLM local). Prototype tập trung 1 cơ sở xi măng, 1 kỳ tuân thủ, dữ liệu tháng, 5–10 phương án công nghệ/hành động. LLM local tối ưu cho phần cứng phổ thông; dữ liệu nhạy cảm xử lý nội bộ, không gửi API AI công cộng.
+
+| Luận điểm | Giải thích |
+|---|---|
+| Vì sao phù hợp? | Bài toán có dữ liệu đầu vào phân tán, nhiều file phi cấu trúc, nhiều nguồn và nhiều ràng buộc. AI phù hợp để chuẩn hóa và đọc dữ liệu; optimization phù hợp để chọn phương án hành động. |
+| Vì sao tốt hơn cách thủ công? | Cách thủ công thường dừng ở kiểm kê và Excel scenario đơn giản. Hệ thống có thể tự động hóa kiểm tra dữ liệu, dự báo phát thải, chạy nhiều kịch bản và lưu lại audit trail. |
+| Vì sao khả thi? | MVP không cần tích hợp toàn bộ thị trường ngay. Có thể bắt đầu bằng dữ liệu công khai + synthetic enterprise data + upload Excel/PDF; dùng quantum-inspired optimization trước, sau đó mở rộng sang quantum annealing/QAOA khi dữ liệu và bài toán đủ lớn. |
 
 ### 5. Kết quả đầu ra dự kiến
-- **Doanh nghiệp**: dự báo phát thải/dư-thiếu hạn ngạch; cảnh báo vượt hạn ngạch; bảng so sánh tổng chi phí vòng đời/tCO₂e giảm/ thời gian/rủi ro (+NPV/IRR/ROI/hoàn vốn); khuyến nghị tổ hợp tối ưu; what-if theo giá carbon; lộ trình giảm phát thải + hồ sơ thẩm định vốn xanh; báo cáo tự động + chatbot.
-- **Ngân hàng/nhà đầu tư**: hồ sơ tóm tắt phát thải/trạng thái tuân thủ (doanh nghiệp chia sẻ); xu hướng phát thải/cường độ theo kỳ; danh mục dự án xanh/nhu cầu vốn/chỉ số tài chính; mức độ đầy đủ/truy xuất/xác minh dữ liệu; tiến độ mục tiêu giảm phát thải; tài liệu/chỉ số thẩm định (không phải điểm tín dụng/khuyến nghị cho vay tự động).
-- **Cơ quan quản lý (hướng mở rộng)**: tổng hợp phát thải/hạn ngách/nhu cầu mua-bán theo ngành/địa phương; tỷ lệ đáp ứng/thiếu/nguy cơ vượt; xu hướng giảm phát thải/đầu tư chuyển đổi; tỷ lệ có báo cáo ESG/cam kết Net Zero; báo cáo cảnh báo tuân thủ phân quyền.
+
+| Output | Mô tả |
+|---|---|
+| Carbon Digital Twin | Hồ sơ phát thải, hạn ngạch, tín chỉ, dữ liệu ESG và chứng từ nguồn của từng cơ sở. |
+| Compliance Gap | Cảnh báo thiếu/dư hạn ngạch, lượng tín chỉ cần mua, rủi ro vượt hạn ngạch cuối kỳ. |
+| Scenario Recommendation | Khuyến nghị mua tín chỉ, đầu tư công nghệ, mua điện xanh hoặc kết hợp; có chi phí và tác động tCO₂e. |
+| Green Finance Profile | Hồ sơ chia sẻ với ngân hàng/nhà đầu tư gồm dữ liệu carbon, dự án xanh, NPV sơ bộ, điểm tin cậy dữ liệu. |
+| Báo cáo tự động | Xuất báo cáo PDF/DOCX/Excel cho quản trị nội bộ, verifier, ngân hàng hoặc cơ quan quản lý theo quyền. |
+| Chatbot tư vấn | Trả lời câu hỏi như: "Tôi thiếu bao nhiêu hạn ngạch?", "Nếu giá carbon tăng 20% thì phương án nào tốt hơn?", "Dự án này có hỗ trợ vay xanh không?" |
 
 ---
 
-## Part VI. Dữ liệu dự kiến (Tiêu chí 4 — 15%) — template
-- Nguồn dữ liệu (công khai/có thể truy cập): _to fill_
-- Quy mô (số bản ghi, thời gian, dung lượng): _to fill_
-- Tính hợp pháp: cam kết không vi phạm bản quyền, không sử dụng dữ liệu cá nhân trái phép, nguồn gốc rõ ràng.
-- Mức độ sẵn sàng (đã tiếp cận/có thể thu thập/đang khảo sát): _to fill_
+## Phần VI. Dữ liệu dự kiến (Tiêu chí 4 — 15%)
+
+### 1. Nguồn dữ liệu
+
+| Nguồn | Công khai | Có thể truy cập | Vai trò trong MVP |
+|---|---|---|---|
+| Văn bản pháp lý về kiểm kê, hạn ngạch, sàn giao dịch, registry | Có | Có | Làm source of truth cho policy rule engine và data dictionary: QĐ 13/2024, QĐ 263/QĐ-TTg, NĐ 29/2026, TT 11/2026, NĐ 119/2025. |
+| Dữ liệu phân bổ hạn ngạch cấp cơ sở | Một phần | Có thể truy cập mức công bố; chi tiết đầy đủ cần quyền | Dùng để thiết kế mô hình dữ liệu allowance và mô phỏng doanh nghiệp có hạn ngạch. |
+| Báo cáo ESG/báo cáo thường niên/báo cáo phát triển bền vững | Có với doanh nghiệp niêm yết | Có | Làm golden schema để trích xuất phát thải, năng lượng, mục tiêu ESG và dự án xanh. |
+| Dữ liệu vận hành doanh nghiệp: điện, nhiên liệu, sản lượng | Không hoàn toàn | MVP dùng synthetic/mock; pilot cần doanh nghiệp cấp quyền | Dữ liệu lõi để tính phát thải và dự báo compliance gap. |
+| Hệ số phát thải | Có | Có | GHG Protocol/IPCC/hệ số điện lưới và hệ số do cơ quan có thẩm quyền công bố để tính Scope 1, Scope 2. |
+| Giá carbon, thanh khoản, lịch sử giao dịch | Một phần | Giai đoạn đầu dùng scenario/mock | Dùng để mô phỏng chi phí mua tín chỉ/hạn ngạch và phân tích độ nhạy. |
+| Dữ liệu dự án đầu tư xanh | Một phần | Mock hoặc lấy từ báo giá/dự án mẫu | Dùng để tính CAPEX, OPEX, giảm tCO₂e, NPV, thời gian hoàn vốn. |
+
+### 2. Quy mô dữ liệu
+
+| Nội dung | Ước lượng cho MVP |
+|---|---|
+| Số doanh nghiệp demo | 10 doanh nghiệp synthetic: 4 xi măng, 3 nhiệt điện, 3 thép. |
+| Số cơ sở/nhà máy | 10–20 cơ sở, mỗi cơ sở có dữ liệu theo tháng. |
+| Thời gian dữ liệu | 12–24 tháng dữ liệu hoạt động; 3 kịch bản carbon price; 3–5 năm forecast tài chính cho dự án xanh. |
+| Số bản ghi activity data | Khoảng 1.000–5.000 bản ghi ở MVP: điện, nhiên liệu, sản lượng, chi phí, chứng từ. |
+| Số bản ghi scenario | Khoảng 300–1.000 bản ghi kịch bản: mua tín chỉ, đầu tư xanh, kết hợp, sensitivity. |
+| Dung lượng | 50–300 MB nếu gồm PDF/Excel demo; phần dữ liệu bảng dưới 50 MB. |
+
+### 3. Tính hợp pháp
+
+- Không sử dụng dữ liệu cá nhân trái phép; thông tin CCCD/thành viên chỉ để trong hồ sơ đội thi, không đưa vào dữ liệu mô hình.
+- Dữ liệu pháp lý và dữ liệu công khai được trích dẫn nguồn rõ ràng trong phụ lục tài liệu tham khảo.
+- Dữ liệu doanh nghiệp dùng trong MVP là synthetic/mock data dựa trên cấu trúc dữ liệu thực tế, không gán cho một doanh nghiệp cụ thể nếu chưa có quyền sử dụng.
+- Khi pilot với doanh nghiệp thật, hệ thống yêu cầu văn bản đồng ý chia sẻ dữ liệu, phân quyền truy cập và lưu audit trail.
+
+### 4. Mức độ sẵn sàng
+
+| Nhóm dữ liệu | Mức độ sẵn sàng | Ghi chú |
+|---|---|---|
+| Văn bản pháp lý | Đã tiếp cận | Có nguồn chính thống từ Cổng TTĐT Chính phủ, Bộ NN&MT. |
+| Golden schema | Có thể xây ngay | Dựa trên mẫu báo cáo kiểm kê, cấu trúc registry, GHG Protocol và báo cáo ESG công khai. |
+| Enterprise activity data | Mock có kiểm soát | MVP dùng synthetic data; pilot thay bằng hóa đơn điện, nhiên liệu, ERP/SCADA nếu có. |
+| Market price | Scenario/mock | Do thị trường mới, dữ liệu giá công khai có thể chưa đủ dày; dùng low-base-high scenarios. |
+| Registry/exchange API | Đang khảo sát | MVP thiết kế data model tương thích; tích hợp API/file secure ở giai đoạn sau. |
+
+### 5. Minimum Data Model cho MVP
+
+| Bảng dữ liệu | Trường dữ liệu tối thiểu | Mục đích |
+|---|---|---|
+| `company` | company_id, tax_id, name, sector, ownership_type | Nhận diện doanh nghiệp và phân ngành. |
+| `facility` | facility_id, company_id, province, product_main, capacity | Quản lý dữ liệu ở cấp cơ sở/nhà máy. |
+| `activity_data` | facility_id, month, activity_type, quantity, unit, evidence_id | Lưu điện, nhiên liệu, sản lượng, nguyên liệu. |
+| `emission_factor` | factor_id, activity_type, factor_value, unit, source, version | Tính phát thải có version và nguồn rõ ràng. |
+| `emissions` | facility_id, period, scope, emissions_tco2e, method, confidence_score | Lưu phát thải đã tính/đã kiểm kê. |
+| `allowance_position` | facility_id, period, allocated_tco2e, balance_tco2e, surrender_deadline | Theo dõi hạn ngạch được cấp và trạng thái tuân thủ. |
+| `carbon_credit` | credit_id, owner_id, type, vintage, volume_tco2e, status | Theo dõi tín chỉ đang có và khả năng sử dụng. |
+| `market_scenario` | scenario_id, price_low, price_base, price_high, fee_rate | Mô phỏng chi phí mua/bán tín chỉ. |
+| `green_project` | project_id, capex, opex_delta, abatement_tco2e_year, start_date, lifetime, taxonomy_match | Đánh giá phương án đầu tư xanh. |
+| `decision_scenario` | scenario_id, actions, total_cost, emissions_after, compliance_status, npv | Kết quả mô phỏng và tối ưu. |
+| `evidence_file` | evidence_id, file_name, source_type, hash, upload_time, approved_by | Evidence vault và audit trail. |
+
+### 6. Chính sách dùng mock data
+
+Mock data không làm sai bài toán nếu được dùng đúng mục đích: chứng minh luồng xử lý, data model, validation, mô phỏng và tối ưu quyết định. Mock data không được dùng để khẳng định doanh nghiệp thật sẽ tiết kiệm chính xác bao nhiêu tiền hay giảm chính xác bao nhiêu phát thải nếu chưa có dữ liệu được xác minh.
+
+| Loại dữ liệu | Cách dùng trong MVP |
+|---|---|
+| Golden data thật | Dùng văn bản pháp lý, GHG Protocol, cấu trúc registry, báo cáo công khai và mẫu kiểm kê để xây data dictionary. |
+| Synthetic enterprise data | Sinh 10–20 doanh nghiệp mô phỏng theo ngành xi măng/thép/nhiệt điện; đảm bảo quan hệ logic giữa sản lượng, điện, nhiên liệu và phát thải. |
+| Mock market data | Tạo 3 scenario giá carbon: thấp, cơ sở, cao; không tuyên bố là giá giao dịch thực tế. |
+| Mock investment data | Tạo 1–3 dự án giảm phát thải/cơ sở, với CAPEX, OPEX, mức giảm tCO₂e, thời gian triển khai, tuổi thọ. |
 
 ---
 
-## Part VII. Tính sáng tạo và khác biệt (Tiêu chí 5 — 10%)
+## Phần VII. Tính sáng tạo và khác biệt (Tiêu chí 5 — 10%)
 
 ### 1. Các giải pháp hiện có
-- **Persefoni**: nền tảng kế toán carbon AI (sổ cái carbon truy xuất/kiểm toán); tự thu thập từ ERP/hóa đơn; AI phát hiện bất thường, chọn hệ số; tính Scope 1/2/3 theo GHG Protocol; Data Lineage; báo cáo ISSB/TCFD/CDP/CSRD/SB 253/261; Scope 3 Data Exchange; Net Zero Navigator (với Bain); SOC 2/ISO 27001/ISO 42001. **Hạn chế**: chưa hỗ trợ tối ưu quyết định giữa mua tín chỉ/hạn ngạch/đầu tư công nghệ/điện xanh.
-- **Watershed**: nền tảng trên CEDA + dữ liệu nội bộ; đo Scope 1/2/3 truy xuất; API + AI làm sạch; báo cáo CSRD/ISSB/CDP/GRI; Emission Hotspots; SBTi; kết nối dự án tín chỉ/năng lượng sạch; quản lý chuỗi cung ứng Scope 3. **Hạn chế**: chưa chuyên biệt bối cảnh VN (hạn ngạch theo cơ sở QĐ 699, dự báo nộp, cơ chế giao nộp); chưa tích hợp tối ưu đa mục tiêu (chi phí/ngân sách/pháp lý).
-- **Normative**: kế toán carbon định hướng khoa học; thư viện 300.000+ hệ số (TÜV SÜD xác nhận ISO/IEC 25051, GHG Protocol); Scope 1/2/3 + FLAG; Carbon Network; dấu chân carbon sản phẩm (CBAM); chuyên gia riêng; SBTi/CSRD/CBAM. **Hạn chế**: tập trung kiểm kê/báo cáo/kế hoạch, chưa có lớp hỗ trợ ra quyết định tối ưu dưới ràng buộc (hạn ngạch, ngân sách xanh, pháp lý VN).
+
+| Giải pháp | Hạn chế so với bài toán đề xuất |
+|---|---|
+| Persefoni / Watershed | Mạnh về carbon accounting và báo cáo phát thải, nhưng chưa tập trung vào bài toán hạn ngạch Việt Nam, quyết định mua/bán tín chỉ và tối ưu tài chính xanh. |
+| Microsoft Cloud for Sustainability / Salesforce Net Zero Cloud | Mạnh về quản trị dữ liệu ESG/carbon ở quy mô doanh nghiệp, nhưng không phải lớp tối ưu tuân thủ carbon cho ETS Việt Nam. |
+| CCTPA / ASEAN Carbon Credit Exchange và các nền tảng giao dịch carbon | Tập trung vào giao dịch, MRV, tư vấn, phát triển dự án carbon; chưa thể hiện rõ chức năng tối ưu tổ hợp giữa hạn ngạch, tín chỉ, công nghệ xanh và green finance ở cấp cơ sở. |
 
 ### 2. Điểm mới của nhóm
-1. **Định vị là hạ tầng hỗ trợ quyết định về tài chính xanh và carbon** — lớp hỗ trợ ra quyết định, không chỉ kế toán carbon.
-2. **Carbon Compliance Model cấp cơ sở với dữ liệu tập trung** — mô phỏng carbon toàn diện cho từng nhà máy, liên kết vận hành (sản lượng, nhiên liệu, điện) + phát thải + hạn ngạch + tín chỉ + dự án xanh; tính thiếu/dư, dự báo compliance gap, mô phỏng kịch bản, theo dõi lineage ở cấp chi tiết (đặc biệt QĐ 699 cho 110 cơ sở).
-3. **Tích hợp AI + Quantum-inspired Optimization** — AI chuẩn hóa/tạo đầu vào sạch, quantum-inspired (MILP/QUBO) giải bài toán tổ hợp: mua tín chỉ/hạn ngạch, dùng tín chỉ hiện có, đầu tư công nghệ, mua điện xanh, kết hợp — dưới ràng buộc (ngân sách, thời gian, pháp lý, ESG, rủi ro giá). Khuyến nghị cụ thể kèm chi phí/tác động tCO₂e. **Đây là điểm khác biệt lớn nhất.**
-4. **Nền tảng chia sẻ dữ liệu carbon phân quyền và cá nhân hóa đa đối tượng**.
 
-### 3. Yếu tố AI/Quantum độc đáo (_to articulate_)
-- AI mới ở đâu? _Quantum mới ở đâu? Sự kết hợp AI + Quantum khác biệt gì?_ — _to fill in proposal._
+- **Điểm mới 1**: Định vị không phải sàn carbon, mà là lớp Carbon Decision Intelligence đứng giữa doanh nghiệp, thị trường carbon và tài chính xanh.
+- **Điểm mới 2**: Dùng Carbon Digital Twin ở cấp cơ sở để liên kết dữ liệu sản xuất, phát thải, hạn ngạch, tín chỉ, ESG, chi phí và chứng từ nguồn.
+- **Điểm mới 3**: Tối ưu quyết định đa mục tiêu: chi phí tuân thủ, trạng thái hạn ngạch, rủi ro giá carbon, NPV dự án xanh và khả năng vay vốn xanh.
+
+### 3. Yếu tố AI/Quantum độc đáo
+
+| Yếu tố | Điểm độc đáo |
+|---|---|
+| AI mới ở đâu? | AI không chỉ đọc báo cáo ESG mà còn biến dữ liệu vận hành phân tán thành dữ liệu carbon chuẩn hóa, gắn chứng từ, điểm tin cậy và cảnh báo bất thường. |
+| Quantum mới ở đâu? | Quantum-inspired optimization giải bài toán tổ hợp nhiều lựa chọn hành động với ràng buộc pháp lý, ngân sách, thời gian triển khai, giá carbon và mục tiêu ESG. |
+| Kết hợp AI + Quantum khác biệt ở đâu? | AI tạo dữ liệu đầu vào đủ sạch; optimization/quantum-inspired tìm phương án hành động tốt nhất. Nếu chỉ có AI sẽ khó bảo đảm tối ưu; nếu chỉ có tối ưu mà dữ liệu bẩn thì kết quả không đáng tin. |
 
 ---
 
-## Part VIII. Kế hoạch phát triển prototype (khuyến khích)
-- Giai đoạn 1: Khảo sát và thu thập dữ liệu.
-- Giai đoạn 2: Xây dựng mô hình.
-- Giai đoạn 3: Phát triển prototype.
-- Giai đoạn 4: Kiểm thử và hoàn thiện.
+## Phần VIII. Kế hoạch phát triển prototype (Khuyến khích — thể hiện tiềm năng vào Vòng 2)
 
-## Part IX. Sản phẩm dự kiến (khuyến khích)
-☐ Dashboard ☐ Web App ☐ Mobile App ☐ Chatbot ☐ API ☐ Hệ hỗ trợ ra quyết định ☐ Khác
+| Giai đoạn | Thời gian | Nội dung | Kết quả |
+|---|---|---|---|
+| Giai đoạn 1 — Khảo sát và thu thập dữ liệu | Tuần 1–2 | Chốt data dictionary, chọn 3 ngành MVP, thu văn bản pháp lý, xây golden schema, tạo synthetic data ban đầu. | Bộ dữ liệu MVP v0.1 và tài liệu yêu cầu. |
+| Giai đoạn 2 — Xây dựng mô hình | Tuần 3–5 | Xây emission engine, data quality rules, forecast phát thải, scenario engine và mô hình tối ưu MILP/QUBO. | Model tính phát thải và khuyến nghị kịch bản. |
+| Giai đoạn 3 — Phát triển prototype | Tuần 6–9 | Làm web dashboard, upload file, form nhập dự án xanh, kết quả compliance gap, khuyến nghị mua/đầu tư/kết hợp. | Prototype chạy được end-to-end. |
+| Giai đoạn 4 — Kiểm thử và hoàn thiện | Tuần 10–12 | Kiểm thử với 10 doanh nghiệp synthetic, demo 3 ngành, kiểm tra độ nhạy giá carbon, hoàn thiện báo cáo và pitch deck. | MVP sẵn sàng cho Vòng 2. |
 
-## Part X. Cam kết
-Ý tưởng do nhóm tự đề xuất; không vi phạm bản quyền dữ liệu; chưa đạt giải cuộc thi tương đương; chấp hành thể lệ.
+---
 
-## Phụ lục
-- **Phụ lục A**: Sơ đồ giải pháp (Hậu, Vinh).
-- **Phụ lục B**: Nguồn dữ liệu.
-- **Phụ lục C**: Tài liệu tham khảo.
+## Phần IX. Sản phẩm dự kiến
+
+| Loại sản phẩm | Chọn | Mô tả |
+|---|---|---|
+| Dashboard | ☒ | Hiển thị phát thải, hạn ngạch, tín chỉ, trạng thái tuân thủ, kịch bản chi phí. |
+| Web App | ☒ | Giao diện chính cho doanh nghiệp nhập dữ liệu, chạy mô phỏng và xuất báo cáo. |
+| Mobile App | ☐ | Chưa ưu tiên ở MVP. |
+| Chatbot | ☒ | Tư vấn truy vấn nhanh trên dữ liệu carbon và các kịch bản. |
+| API | ☒ | Chia sẻ Green Finance Profile cho ngân hàng/nhà đầu tư theo quyền. |
+| Hệ hỗ trợ ra quyết định | ☒ | Lõi sản phẩm: tối ưu mua tín chỉ/đầu tư/kết hợp. |
+| Khác | ☒ | Evidence vault, audit trail, data quality score. |
+
+---
+
+## Phần X. Cam kết
+
+Đội thi cam kết:
+
+- Ý tưởng do nhóm tự đề xuất và phát triển trên cơ sở nghiên cứu bối cảnh thị trường carbon, hạn ngạch phát thải và tài chính xanh tại Việt Nam.
+- Không vi phạm bản quyền dữ liệu; dữ liệu công khai được trích nguồn; dữ liệu doanh nghiệp trong MVP là synthetic/mock hoặc chỉ sử dụng khi có quyền hợp pháp.
+- Không sử dụng dữ liệu cá nhân trái phép; không đưa dữ liệu CCCD, số điện thoại, email cá nhân vào dữ liệu huấn luyện/mô phỏng.
+- Chưa đạt giải ở cuộc thi tương đương khác đối với cùng ý tưởng/sản phẩm ở cùng mức hoàn thiện.
+- Chấp hành đầy đủ thể lệ cuộc thi AI-Quantum Challenge 2026.
+
+Đại diện đội thi: .................................................. Ngày: ....../....../2026
+
+---
+
+## Phụ lục A. Sơ đồ giải pháp
+
+```
+Enterprise Data Sources
+   |-- Excel/CSV: sản lượng, điện, nhiên liệu
+   |-- PDF: hóa đơn, ESG report, báo cáo kiểm kê
+   |-- ERP/SCADA/IoT: giai đoạn pilot
+   |-- Registry/Exchange data: khi được cấp quyền
+        |
+        v
+ AI Ingestion + Data Quality Engine
+   |-- Chuẩn hóa đơn vị đo, kỳ báo cáo
+   |-- Kiểm tra thiếu/trùng/sai lệch
+   |-- Gắn evidence và confidence score
+        |
+        v
+ Carbon Digital Twin by Facility
+   |-- Activity data
+   |-- Emissions Scope 1/2
+   |-- Allowance position
+   |-- Carbon credits
+   |-- ESG/Green project profile
+        |
+        v
+ Scenario + Quantum-inspired Optimization
+   |-- Mua tín chỉ / hạn ngạch
+   |-- Dùng tín chỉ đang có
+   |-- Đầu tư công nghệ xanh
+   |-- Mua điện xanh
+   |-- Kết hợp nhiều phương án
+        |
+        v
+ Outputs
+   |-- Compliance dashboard
+   |-- Decision recommendation
+   |-- Green Finance Profile
+   |-- Audit-ready report
+```
+
+## Phụ lục B. Nguồn dữ liệu
+
+| Nhóm nguồn | Nguồn cụ thể | Ứng dụng trong sản phẩm |
+|---|---|---|
+| Pháp lý carbon | QĐ 13/2024/QĐ-TTg, QĐ 263/QĐ-TTg, QĐ 699/QĐ-BNNMT, NĐ 29/2026/NĐ-CP, TT 11/2026/TT-BNNMT, NĐ 119/2025/NĐ-CP | Rule engine, data dictionary, mô hình hạn ngạch/registry/sàn. |
+| Chuẩn kiểm kê | GHG Protocol, IPCC, hệ số phát thải chính thức khi có | Emission calculation và phân loại Scope 1/2/3. |
+| Tài chính xanh | QĐ 21/2025/QĐ-TTg về phân loại xanh; báo cáo World Bank/IFC | Green Finance Profile và đánh giá sơ bộ dự án xanh. |
+| Dữ liệu doanh nghiệp | Synthetic/mock dựa trên cấu trúc báo cáo ESG, báo cáo kiểm kê, ĐTM và mẫu hóa đơn | Demo MVP và kiểm thử luồng dữ liệu. |
+| Thị trường carbon | Scenario giá carbon thấp/cơ sở/cao; dữ liệu giao dịch thật khi được phép truy cập | Mô phỏng chi phí mua tín chỉ/hạn ngạch. |
+
+## Phụ lục C. Tài liệu tham khảo
+
+- **[R1]** World Bank Group/IFC, Vietnam Country Climate and Development Report (CCDR), 2022. https://www.ifc.org/content/dam/ifc/doc/mgrt/ccdr-vietnam-full-report-0107-final.pdf
+- **[R2]** Quyết định 13/2024/QĐ-TTg: Danh mục lĩnh vực, cơ sở phát thải khí nhà kính phải kiểm kê. https://vanban.chinhphu.vn/?docid=210939&pageid=27160
+- **[R3]** Quyết định 263/QĐ-TTg: Phê duyệt tổng hạn ngạch phát thải khí nhà kính thí điểm cho năm 2025-2026. https://vanban.chinhphu.vn/?docid=216923&pageid=27160
+- **[R4]** Cục Biến đổi khí hậu - Bộ NN&MT: phân bổ hạn ngạch phát thải cụ thể cho 110 cơ sở. https://dcc.mae.gov.vn/bo-nong-nghiep-va-moi-truong-thuc-hien-phan-bo-han-ngach-phat-thai-cu-the-cho-cac-co-so-3881.htm
+- **[R5]** Nghị định 29/2026/NĐ-CP: Sàn giao dịch các-bon trong nước. https://vanban.chinhphu.vn/?classid=1&docid=216694&pageid=27160&typegroupid=4
+- **[R6]** Thông tư 11/2026/TT-BNNMT: Quản lý, vận hành Hệ thống đăng ký quốc gia về hạn ngạch phát thải khí nhà kính và tín chỉ các-bon. https://vanban.chinhphu.vn/?docid=217020&pageid=27160
+- **[R7]** Nghị định 119/2025/NĐ-CP: Sửa đổi, bổ sung một số điều của Nghị định 06/2022/NĐ-CP. https://vanban.chinhphu.vn/?docid=213875&pageid=27160
+- **[R8]** Quyết định 21/2025/QĐ-TTg: Tiêu chí môi trường và xác nhận dự án thuộc danh mục phân loại xanh. https://vanban.chinhphu.vn/?docid=214447&pageid=27160
+- **[R9]** GHG Protocol Corporate Accounting and Reporting Standard. https://ghgprotocol.org/sites/default/files/standards/ghg-protocol-revised.pdf
+- **[R10]** World Bank Carbon Pricing Dashboard. https://carbonpricingdashboard.worldbank.org/compliance/price

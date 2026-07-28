@@ -3,10 +3,10 @@
 ## Trạng thái Đã xác minh Hiện tại
 
 - Thư mục gốc kho lưu trữ: `d:/AIQuantum`
-- Đường dẫn khởi động chuẩn: chưa có (chưa có app/code)
-- Đường dẫn xác minh chuẩn (smoke/e2e): chưa có — xem F13 trong `feature_list.json`
-- Tính năng chưa hoàn thành có mức ưu tiên cao nhất hiện tại: F00 (Project scaffolding) — đang bị chặn
-- Sự cố chặn hiện tại: chưa chốt stack frontend (React vs Streamlit) và package manager (uv/poetry/pip). Không có code, không có smoke baseline.
+- Đường dẫn khởi động chuẩn: `cd web && npm run dev` (localhost:3000)
+- Đường dẫn xác minh chuẩn (smoke/e2e): chưa có end-to-end thật — xem F13 trong `feature_list.json`. Tạm thời: `npm run lint` + `npm run build` trong `web/`.
+- Tính năng chưa hoàn thành có mức ưu tiên cao nhất hiện tại: F12 (Frontend dashboards) — demo UI xong, RBAC/audit thật = Stage 2.
+- Sự cố chặn hiện tại: chưa có backend (FastAPI + PostgreSQL + MinIO + Pyomo/HiGHS). Mock data VND, chưa nối engine thật.
 
 ## Nhật ký Phiên
 
@@ -72,3 +72,31 @@
 - Chặn xác minh trực quan:
   - App đã chạy local tại `http://localhost:3001`, nhưng phiên Codex không phát hiện in-app Browser tab nên Playwright chưa thể chụp/nhấp kiểm tra.
 - Bước tốt nhất tiếp theo: Gắn/mở Browser cạnh Codex, chạy Playwright ở desktop + mobile cho 5 route, sửa các vấn đề trực quan còn lại rồi commit.
+
+### Phiên 004
+
+- Ngày: 2026-07-28
+- Mục tiêu: Đồng bộ toàn bộ docs + feature_list + mock data theo bản đề xuất cập nhật mới của user (AI + Quantum Carbon & Green Finance Decision Platform).
+- Đã hoàn thành:
+  - Thay `docs/project-context.md` bằng mẫu hồ sơ đề xuất đầy đủ (Phần I–X + Phụ lục A/B/C, R1–R10 có URL, data model 11 bảng, kế hoạch 12 tuần, hàm mục tiêu, ví dụ xi măng A VND).
+  - Cập nhật `docs/data-flow.md`: định vị Decision Infrastructure, Minimum Data Model 11 bảng, outputs theo Carbon Digital Twin / Compliance Gap / Scenario Recommendation / Green Finance Profile, luồng 7 bước, hàm mục tiêu + ràng buộc.
+  - Cập nhật `CLAUDE.md`: tên đề tài dài + định vị mới, Planned Architecture (Decision Infrastructure, evidence vault, confidence score, Scope 1/2), Prototype Scope (10 doanh nghiệp synthetic, 12 tuần), Key Domain Facts (R1–R10).
+  - Viết lại `README.md` root: tổng quan project, bài toán, trạng thái, chạy nhanh, MVP scope, kiến trúc planned, tech stack, key domain facts.
+  - Cập nhật `feature_list.json`: thêm proposal_title, positioning, mvp_scope (10 doanh nghiệp, 11 bảng, hàm mục tiêu, ràng buộc, 12 tuần); cập nhật F01–F13 theo định vị mới (Carbon Digital Twin, evidence vault, confidence score, Green Finance Profile sharing, RBAC/ABAC).
+  - Cập nhật `web/src/lib/types.ts`: comment VND, thêm productionVolume/productUnit/province, carbonPriceAssumption, energySavings, taxonomyMatch, EnterpriseSummary (10 doanh nghiệp).
+  - Cập nhật `web/src/lib/mock-data.ts`: cơ sở demo xi măng A (hạn ngạch 2,2M, BAU 2,4M, thiếu 200k, giá 250.000 VND/tCO₂e, ngân sách 80 tỷ VND); 6 abatement options VND (WHR 70 tỷ giảm 120k tCO₂e/năm, tiết kiệm 12 tỷ/năm theo docs); whatIf giá carbon nghìn VND; thêm 10 doanh nghiệp synthetic (4 xi măng, 3 nhiệt điện, 3 thép); thêm rule QĐ 21/2025 Green Taxonomy.
+  - Sửa dashboard pages hiển thị VND: enterprise (CAPEX, ngân sách, what-if axis/tooltip, cost impact label), landing (hero badge + subtitle + heroStats), investor (vốn xanh 108 tỷ VND).
+  - Cập nhật `web/README.md`: context CarbonPilot + cấu trúc + mock data VND.
+- Xác minh đã chạy:
+  - `npm run lint` PASS — 0 lỗi, 0 cảnh báo.
+  - `npm run build` PASS — 5 route static: `/`, `/enterprise`, `/investor`, `/bank`, `/regulator`.
+- Bằng chứng đã ghi lại: build output trong progress; feature_list.json cập nhật.
+- Tệp hoặc artifact đã cập nhật: `docs/project-context.md`, `docs/data-flow.md`, `CLAUDE.md`, `README.md`, `feature_list.json`, `web/src/lib/types.ts`, `web/src/lib/mock-data.ts`, `web/src/app/enterprise/page.tsx`, `web/src/app/page.tsx`, `web/src/app/investor/page.tsx`, `web/README.md`, `claude-progress.md` (file này).
+- Rủi ro đã biết hoặc vấn đề chưa được giải quyết:
+  - Mock data VND chưa nối backend thật (Stage 2).
+  - 10 doanh nghiệp synthetic thêm vào mock-data.ts nhưng dashboard vẫn hiển thị 1 cơ sở chính (chưa có UI list doanh nghiệp).
+  - costImpact giữ triệu USD (số liệu nghiên cứu Impact Assessment) — không phải VND demo.
+  - Chưa có RBAC/ABAC thật + audit trail + evidence vault (Stage 2).
+  - Open question data-flow.md: trường "quyết định lựa chọn phương án thực tế" required hay optional vẫn chưa chốt.
+  - Playwright visual verification chưa chạy.
+- Bước tốt nhất tiếp theo: Bắt đầu Stage 2 — scaffolding backend (FastAPI + Docker Compose PostgreSQL + MinIO), hoặc mở rộng UI hiển thị danh sách 10 doanh nghiệp + Playwright visual verify.

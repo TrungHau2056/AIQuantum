@@ -48,7 +48,7 @@ const roles = [
 const heroStats = [
   { value: 110, decimals: 0, suffix: "", label: "cơ sở trong diện ETS" },
   { value: 511.47, decimals: 2, suffix: "M", label: "tCO₂e hạn ngạch thí điểm" },
-  { value: 351.6, decimals: 1, prefix: "$", suffix: "M", label: "tiết kiệm chi phí tuân thủ" },
+  { value: 351.6, decimals: 1, prefix: "", suffix: "M USD", label: "tiết kiệm chi phí tuân thủ" },
 ];
 
 export default function Home() {
@@ -66,15 +66,16 @@ export default function Home() {
         <div className="relative space-y-6">
           <div className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
             <Sparkles className="h-3.5 w-3.5 text-primary" />
-            AI-Quantum Challenge 2026 — Carbon Compliance Decision Support
+            AI-Quantum Challenge 2026 — Carbon & Green Finance Decision Platform
           </div>
           <div className="space-y-3">
             <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
               Carbon<span className="text-primary">Pilot</span>
             </h1>
             <p className="max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Nền tảng chuẩn hóa dữ liệu carbon và lựa chọn phương án tuân thủ tối ưu cho thị trường
-              carbon Việt Nam — kết nối doanh nghiệp, ngân hàng, nhà đầu tư và cơ quan quản lý.
+              Lớp Decision Infrastructure cho thị trường carbon Việt Nam — biến dữ liệu phát thải phân tán
+              thành Carbon Digital Twin, dự báo Compliance Gap và chọn tổ hợp tuân thủ tối ưu cho doanh nghiệp,
+              ngân hàng, nhà đầu tư và cơ quan quản lý.
             </p>
           </div>
           <div className="grid gap-6 pt-4 sm:grid-cols-3 sm:gap-8">
